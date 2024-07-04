@@ -1,0 +1,75 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+  user-service:
+    build: ./backend/user-service
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo-user
+      - rabbitmq
+  product-service:
+    build: ./backend/product-service
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongo-product
+      - rabbitmq
+  order-service:
+    build: ./backend/order-service
+    ports:
+      - "3003:3003"
+    depends_on:
+      - mongo-order
+      - rabbitmq
+  notification-service:
+    build: ./backend/notification-service
+    ports:
+      - "3004:3004"
+    depends_on:
+      - rabbitmq
+  category-service:
+    build: ./backend/category-service
+    ports:
+      - "3005:3005"
+    depends_on:
+      - mongo-category
+      - rabbitmq
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  mongo-user:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-user-data:/data/db
+  mongo-product:
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo-product-data:/data/db
+  mongo-order:
+    image: mongo
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-order-data:/data/db
+  mongo-category:
+    image: mongo
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo-category-data:/data/db
+
+volumes:
+  mongo-user-data:
+  mongo-product-data:
+  mongo-order-data:
+  mongo-category-data:
