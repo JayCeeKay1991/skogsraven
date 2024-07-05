@@ -29,7 +29,11 @@ const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Could not create category." });
+        res
+            .status(500)
+            .json({
+            error: "An unexpected error occurred while creating the category.",
+        });
     }
 });
 exports.createCategory = createCategory;
@@ -41,7 +45,7 @@ const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (error) {
         res.status(500);
         res.json({
-            error: "An unexpected error occurred while getting the categories. Please try again later.",
+            error: "An unexpected error occurred while getting the categories.",
         });
     }
 });
@@ -62,7 +66,7 @@ const updateCategory = (req, res) => __awaiter(void 0, void 0, void 0, function*
     catch (error) {
         res.status(500);
         res.json({
-            error: "An unexpected error occurred while editing the category. Please try again later.",
+            error: "An unexpected error occurred while editing the category.",
         });
     }
 });

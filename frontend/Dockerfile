@@ -1,27 +1,26 @@
-# Use the official Node.js image as the base image for the build stage
-FROM node:14 AS build
+FROM node:16.20.1-buster-slim
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory inside the container
+# Copy package.json and package-lock.json files
 COPY package*.json ./
+
+# Clean up node_modules and package-lock.json
+RUN rm -rf node_modules package-lock.json
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code to the working directory inside the container
+# Copy the rest of the application files
 COPY . .
 
-# Build the React app
+# Install TypeScript globally
+RUN npm install -g typescript
+
+# Build the application
 RUN npm run build
 
-# Use an nginx image to serve the built app
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 4173
 
-# Expose the port the app runs on
-EXPOSE 80
-
-# Start the nginx server
-CMD ["nginx", "-g", "daemon off;"]
+# Serve the application
+CMD ["npm", "run", "serve"]

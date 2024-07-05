@@ -15,7 +15,11 @@ export const createCategory = async (req: Request, res: Response) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Could not create category." });
+    res
+      .status(500)
+      .json({
+        error: "An unexpected error occurred while creating the category.",
+      });
   }
 };
 
@@ -26,8 +30,7 @@ export const getCategories = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500);
     res.json({
-      error:
-        "An unexpected error occurred while getting the categories. Please try again later.",
+      error: "An unexpected error occurred while getting the categories.",
     });
   }
 };
@@ -51,8 +54,7 @@ export const updateCategory = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500);
     res.json({
-      error:
-        "An unexpected error occurred while editing the category. Please try again later.",
+      error: "An unexpected error occurred while editing the category.",
     });
   }
 };

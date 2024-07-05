@@ -20,5 +20,5 @@ export async function apiClient<T>(
   if (response.ok) {
     return response.json();
   }
-  return Promise.reject(new Error("Something went wrong"));
+  return Promise.reject(new Error("Something went wrong in the API client."));
 }

@@ -1,12 +1,21 @@
-FROM node:14
+FROM node:16.20.1
 
 WORKDIR /app
 
-COPY package*.json ./
+# Copy the package.json and package-lock.json files for the service
+COPY notification-service/package*.json ./
 
+# Copy the common directory's package.json and package-lock.json files
+COPY common/package*.json ./common/
+
+# Install dependencies for both the service and common directory
 RUN npm install
 
-COPY . .
+# Copy the rest of the service files
+COPY notification-service ./
+
+# Copy the rest of the common directory files
+COPY common ./common
 
 # Install TypeScript globally
 RUN npm install -g typescript

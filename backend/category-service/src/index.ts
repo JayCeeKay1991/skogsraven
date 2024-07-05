@@ -8,12 +8,7 @@ const port = config.port;
 const dbUrl = `${config.dbUrl}${config.dbNameProd}`;
 const app = express();
 
-app.use(
-  cors({
-    origin: ["http://localhost:5173"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(express.json());
 
