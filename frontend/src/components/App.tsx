@@ -23,8 +23,10 @@ function App() {
     <>
       <h1>Hi 😻</h1>
       {categoryList.length ? (
-        categoryList.map((category) => (
-          <p key={category.name}>{category.name}</p>
+        categoryList.map((category, i) => (
+          <p key={category._id}>
+            Category {categoryList.indexOf(category) + 1}: {category.name}
+          </p>
         ))
       ) : (
         <h2>No categories yet.</h2>
