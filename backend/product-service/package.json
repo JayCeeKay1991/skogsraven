@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/amqplib": "^0.10.5",
     "@types/cors": "^2.8.17",
     "@types/mongoose": "^5.11.97",
+    "amqplib": "^0.10.4",
     "common": "file:../common",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
