@@ -1,7 +1,12 @@
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+#root {
+  --theme-dark-brown: rgb(56, 37, 20);
+  --theme-medium-brown: rgb(224, 192, 159);
+  --theme-dark-green: rgb(79, 112, 101);
+  --theme-medium-green: rgb(164, 208, 182);
 }

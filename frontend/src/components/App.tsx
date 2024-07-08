@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { CategoryType } from "../types/types";
 import { getCategories } from "../services/category-service";
+import Nav from "./Nav";
 
-function App() {
+const App = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
 
   useEffect(() => {
@@ -21,18 +22,16 @@ function App() {
 
   return (
     <>
-      <h1>Hi 😻</h1>
+      <Nav></Nav>
       {categoryList.length ? (
-        categoryList.map((category, i) => (
-          <p key={category._id}>
-            Category {categoryList.indexOf(category) + 1}: {category.name}
-          </p>
+        categoryList.map((category) => (
+          <p key={category._id}>{category.name}</p>
         ))
       ) : (
         <h2>No categories yet.</h2>
       )}
     </>
   );
-}
+};
 
 export default App;
