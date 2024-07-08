@@ -1,0 +1,19 @@
+#category-list-wrap {
+  background-color: var(--theme-medium-green);
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#category-button {
+  background-color: var(--theme-dark-brown);
+  height: 38px;
+  width: fit-content;
+  border-radius: 30px;
+  color: var(--theme-light-brown);
+  border: none;
+  padding: 10px;
+}

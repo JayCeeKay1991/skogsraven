@@ -3,6 +3,7 @@ import "./App.css";
 import { CategoryType } from "../types/types";
 import { getCategories } from "../services/category-service";
 import Nav from "./Nav";
+import CategoryList from "./CategoryList";
 
 const App = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
@@ -23,13 +24,7 @@ const App = () => {
   return (
     <>
       <Nav></Nav>
-      {categoryList.length ? (
-        categoryList.map((category) => (
-          <p key={category._id}>{category.name}</p>
-        ))
-      ) : (
-        <h2>No categories yet.</h2>
-      )}
+      <CategoryList categoryList={categoryList}></CategoryList>
     </>
   );
 };
