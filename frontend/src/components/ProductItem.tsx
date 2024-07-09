@@ -1,5 +1,6 @@
 import React from "react";
 import { ProductType } from "@/types/types";
+import "./ProductItem.css";
 
 type ProductItemProp = {
   product: ProductType;
@@ -7,18 +8,12 @@ type ProductItemProp = {
 
 const ProductItem = ({ product }: ProductItemProp) => {
   return (
-    <>
-      {product ? (
-        <>
-          <h1>{product.name}</h1>
-          <img src={product.picture}></img>
-          <p>{product.price}</p>
-          <p>{product.available ? "In Stock 💚" : "Out of stock 💔"}</p>
-        </>
-      ) : (
-        <p>Error ☹️</p>
-      )}
-    </>
+    <div id="product-item-wrap">
+      <h1>{product.name}</h1>
+      <img src={product.picture}></img>
+      <p>{product.price}</p>
+      <p>{product.available ? "In Stock 💚" : "Out of stock 💔"}</p>
+    </div>
   );
 };
 

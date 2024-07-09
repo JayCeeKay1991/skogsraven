@@ -17,10 +17,8 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
 
   useEffect(() => {
     const fetchProductsByCategory = async (selectedCategory: CategoryType) => {
-      setSelectedCategory(selectedCategory);
       try {
         const allProducts = await getProducts();
-        console.log(allProducts);
         if (allProducts.length)
           setProductList(
             allProducts.filter((prod) => prod.category === selectedCategory._id)
@@ -41,7 +39,9 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
             <button
               id="category-button"
               key={category._id}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => {
+                setSelectedCategory(category);
+              }}
             >
               {category.name}
             </button>

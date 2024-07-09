@@ -10,8 +10,10 @@ const ProductList = ({ productList }: ProductListProp) => {
   return (
     <>
       {productList && productList.length ? (
-        productList.map((prod) => {
-          <ProductItem product={prod}></ProductItem>;
+        productList.map((product) => {
+          return (
+            <ProductItem product={product} key={product._id}></ProductItem>
+          );
         })
       ) : (
         <p>No products found for this category.</p>
