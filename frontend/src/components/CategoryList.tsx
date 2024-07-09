@@ -52,6 +52,8 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
       </div>
       {selectedCategory && productList.length ? (
         <ProductList productList={productList}></ProductList>
+      ) : selectedCategory && !productList.length ? (
+        <p>No products for this category.</p>
       ) : (
         <Featured></Featured>
       )}

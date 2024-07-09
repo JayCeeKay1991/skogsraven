@@ -1,0 +1,8 @@
+#footer-wrap {
+  background-color: var(--theme-dark-green);
+  color: white;
+  height: 200px;
+  width: 100%;
+  position: static;
+  bottom: 0;
+}

@@ -11,8 +11,8 @@ const ProductItem = ({ product }: ProductItemProp) => {
     <div id="product-item-wrap">
       <h1>{product.name}</h1>
       <img src={product.picture}></img>
-      <p>{product.price}</p>
-      <p>{product.available ? "In Stock 💚" : "Out of stock 💔"}</p>
+      <p>{product.price} $</p>
+      <p>{product.available ? "On Stock 💚" : "Currently out of stock 💔"}</p>
     </div>
   );
 };

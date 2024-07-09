@@ -4,6 +4,8 @@ import { CategoryType } from "../types/types";
 import { getCategories } from "../services/category-service";
 import Nav from "./Nav";
 import CategoryList from "./CategoryList";
+import Footer from "./Footer";
+import Hero from "./Hero";
 
 const App = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
@@ -24,7 +26,9 @@ const App = () => {
   return (
     <>
       <Nav></Nav>
+      <Hero></Hero>
       <CategoryList categoryList={categoryList}></CategoryList>
+      <Footer></Footer>
     </>
   );
 };

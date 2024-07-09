@@ -9,7 +9,7 @@ type ProductListProp = {
 const ProductList = ({ productList }: ProductListProp) => {
   return (
     <>
-      {productList && productList.length ? (
+      {productList.length ? (
         productList.map((product) => {
           return (
             <ProductItem product={product} key={product._id}></ProductItem>
