@@ -11,6 +11,7 @@ const Nav = () => {
       </form>
       <button>Cart</button>
       <button>Profile</button>
+      <button>Messages</button>
       <button>Login</button>
       <button>Logout</button>
     </nav>

@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import config from "./config/config";
 
 const port = config.port;
-const dbUrl = `${config.dbUrl}${config.dbNameProd}`;
+const dbUrl = `${config.dbUrl}${config.dbNameCat}`;
 const app = express();
 
 app.use(

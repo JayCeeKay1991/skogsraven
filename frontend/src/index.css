@@ -5,9 +5,9 @@ body {
 }
 
 #root {
-  --theme-dark-brown: rgb(56, 37, 20);
+  --theme-dark-brown: rgb(91, 56, 26);
   --theme-medium-brown: rgb(224, 192, 159);
   --theme-light-brown: rgb(236, 212, 189);
   --theme-dark-green: rgb(79, 112, 101);
-  --theme-medium-green: rgb(164, 208, 182);
+  --theme-medium-green: rgb(180, 204, 175);
 }
