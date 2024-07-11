@@ -6,14 +6,16 @@ const Nav = () => {
     <nav id="nav-wrap">
       <img id="nav-logo"></img>
       <form id="search">
-        <input placeholder="Category or product"></input>
-        <button>Search</button>
+        <input placeholder="Category or product..."></input>
+        <button>🔎</button>
       </form>
-      <button>Cart</button>
-      <button>Profile</button>
-      <button>Messages</button>
-      <button>Login</button>
-      <button>Logout</button>
+      <div id="user-buttons">
+        <button className="transparent-button">🧺</button>
+        <button className="transparent-button">💬</button>
+        <button className="transparent-button">🤓</button>
+      </div>
+      <button className="transparent-button">Login</button>
+      <button className="transparent-button">Logout</button>
     </nav>
   );
 };

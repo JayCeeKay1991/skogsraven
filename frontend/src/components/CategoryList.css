@@ -1,5 +1,5 @@
 #category-list-wrap {
-  background-color: var(--theme-medium-green);
+  background-color: var(--theme-dark-green);
   height: 60px;
   padding: 10px;
   display: flex;
@@ -9,11 +9,13 @@
 }
 
 #category-button {
-  background-color: var(--theme-dark-brown);
+  background-color: var(--theme-light-brown);
   height: 38px;
   width: fit-content;
   border-radius: 30px;
-  color: var(--theme-light-brown);
+  color: var(--theme-dark-green);
   border: none;
   padding: 10px;
+  font-weight: bold;
+  font-size: large;
 }

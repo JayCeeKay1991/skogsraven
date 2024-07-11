@@ -5,9 +5,23 @@ body {
 }
 
 #root {
-  --theme-dark-brown: rgb(91, 56, 26);
+  --theme-dark-brown: rgb(97, 66, 37);
   --theme-medium-brown: rgb(224, 192, 159);
   --theme-light-brown: rgb(236, 212, 189);
+  --theme-light-brown-50: rgba(236, 212, 189, 0.5);
   --theme-dark-green: rgb(85, 108, 100);
   --theme-medium-green: rgb(180, 204, 175);
+  --theme-light-green: rgb(213, 233, 209);
+  --theme-light-green-50: rgba(213, 233, 209, 0.5);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--theme-light-brown-50),
+    var(--theme-light-green-50) 80%
+  );
+}
+
+.transparent-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
