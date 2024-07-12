@@ -9,11 +9,11 @@
 }
 
 #category-button {
-  background-color: var(--theme-light-brown);
+  background-color: var(--theme-dark-brown);
   height: 38px;
   width: fit-content;
-  border-radius: 30px;
-  color: var(--theme-dark-green);
+  border-radius: 10px;
+  color: white;
   border: none;
   padding: 10px;
   font-weight: bold;

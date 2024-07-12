@@ -1,0 +1,30 @@
+#sub-nav-wrap {
+  background-color: var(--theme-medium-green);
+  height: 72px;
+  width: 100%;
+  max-width: 100%;
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#subnav-links {
+  font-weight: bold;
+  display: flex;
+  gap: 12px;
+  color: var(--theme-dark-green);
+  text-decoration: underline;
+  padding-right: 20px;
+}
+
+#subnav-icon-wrap {
+  display: flex;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.subnav-icon {
+  width: 30px;
+  opacity: 50%;
+}
