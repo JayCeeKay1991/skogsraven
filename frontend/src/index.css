@@ -1,7 +1,6 @@
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
 }
 
 #root {
@@ -11,8 +10,8 @@ body {
   --theme-light-brown-50: rgba(236, 212, 189, 0.5);
   --theme-dark-green: rgb(95, 110, 101);
   --theme-dark-green-50: rgb(95, 110, 101, 0.5);
-  --theme-medium-green: rgb(215, 227, 207);
-  --theme-light-green: rgb(214, 224, 203);
+  --theme-medium-green: rgb(200, 208, 195);
+  --theme-light-green: rgb(157, 171, 158);
   --theme-light-green-50: rgba(213, 233, 209, 0.5);
   --theme-white: rgb(235, 228, 221);
   background-image: linear-gradient(

@@ -9,6 +9,7 @@ const SubNav = () => {
         <img className="subnav-icon" src="ig-icon.png"></img>
         <img className="subnav-icon" src="linkedin-icon.png"></img>
       </div>
+      <p>Sign up this week and get 15% off your first order!</p>
       <div id="subnav-links">
         <a className="transparent-button">NEWS</a>
         <a className="transparent-button">ABOUT</a>

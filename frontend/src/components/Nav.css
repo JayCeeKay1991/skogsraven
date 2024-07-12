@@ -1,14 +1,15 @@
 #nav-wrap {
   background-color: var(--theme-dark-brown);
-  width: 100%;
+  max-width: 100%;
   height: 60px;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  align-items: stretch;
-  justify-content: space-evenly;
+  /* padding-top: 15px; */
+  /* padding-bottom: 15px; */
+  padding: 15px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #logo-wrap {
@@ -31,11 +32,13 @@
   gap: 15px;
   width: 200px;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 #user-buttons button {
+  padding-top: 10px;
   font-size: 30px;
+  color: var(--theme-white);
 }
 
 #search input {
@@ -54,9 +57,10 @@
   border: none;
   height: 42px;
   width: 45px;
-  font-size: 20px;
+  font-size: 30px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  color: var(--theme-dark-green);
 }
 
 #search {
@@ -66,4 +70,10 @@
 
 #search input:focus {
   outline: none;
+}
+
+.login-logout-button {
+  size: 30px;
+  font-size: 40px;
+  color: var(--theme-white);
 }

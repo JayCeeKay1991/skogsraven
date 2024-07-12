@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  BiLogInCircle,
+  BiLogOutCircle,
+  BiCart,
+  BiMessage,
+  BiUser,
+  BiSearchAlt,
+} from "react-icons/bi";
 import "./Nav.css";
 
 const Nav = () => {
@@ -9,16 +17,26 @@ const Nav = () => {
         <h2>Skogsräven</h2>
       </div>
       <form id="search">
-        <input placeholder="Category or product..."></input>
-        <button>🔎</button>
+        <input placeholder="Search..."></input>
+        <button className="transparent-button">
+          <BiSearchAlt />
+        </button>
       </form>
       <div id="user-buttons">
-        <button className="transparent-button">🧺</button>
-        <button className="transparent-button">💬</button>
-        <button className="transparent-button">🤓</button>
+        <button className="transparent-button">
+          <BiCart />
+        </button>
+        <button className="transparent-button">
+          <BiMessage />
+        </button>
+        <button className="transparent-button">
+          <BiUser />
+        </button>
       </div>
-      <button className="transparent-button">Login</button>
-      <button className="transparent-button">Logout</button>
+      <div id="login-logout">
+        <BiLogInCircle className="login-logout-button" />
+        <BiLogOutCircle className="login-logout-button" />
+      </div>
     </nav>
   );
 };
