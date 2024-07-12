@@ -4,7 +4,10 @@ import "./Nav.css";
 const Nav = () => {
   return (
     <nav id="nav-wrap">
-      <img id="nav-logo"></img>
+      <div id="logo-wrap">
+        <img id="nav-logo" src="logo-brown.png"></img>
+        <h2>Skogsräven</h2>
+      </div>
       <form id="search">
         <input placeholder="Category or product..."></input>
         <button>🔎</button>

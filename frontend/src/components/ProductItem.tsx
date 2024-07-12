@@ -9,10 +9,17 @@ type ProductItemProp = {
 const ProductItem = ({ product }: ProductItemProp) => {
   return (
     <div id="product-item-wrap">
-      <h1>{product.name}</h1>
+      <div id="product-item-text">
+        <h2>{product.name}</h2>
+        <p>{product.shortDescription}</p>
+      </div>
       <img src={product.picture}></img>
-      <p>{product.price} $</p>
-      <p>{product.available ? "On Stock 💚" : "Currently out of stock 💔"}</p>
+      <div id="product-item-price">
+        <p style={{ fontWeight: 800 }}>{product.price}.00 €</p>
+        <p style={{ fontSize: "10px" }}>
+          {product.available ? "On Stock 💚" : "Currently out of stock 💔"}
+        </p>
+      </div>
     </div>
   );
 };

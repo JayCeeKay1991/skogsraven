@@ -11,6 +11,19 @@
   justify-content: space-evenly;
 }
 
+#logo-wrap {
+  width: 300px;
+  display: flex;
+  gap: 10px;
+  color: var(--theme-light-brown);
+  align-items: center;
+  font-family: "Permanent Marker";
+}
+
+#nav-logo {
+  height: 50px;
+}
+
 #user-buttons {
   background-color: var(--theme-dark-green);
   border-radius: 10px;

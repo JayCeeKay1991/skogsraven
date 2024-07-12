@@ -43,7 +43,7 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
                 setSelectedCategory(category);
               }}
             >
-              {category.name}
+              {category.name.toUpperCase()}
             </button>
           ))
         ) : (

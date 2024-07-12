@@ -1,6 +1,7 @@
 import { ProductType } from "@/types/types";
 import ProductItem from "./ProductItem";
 import React from "react";
+import "./ProductList.css";
 
 type ProductListProp = {
   productList: ProductType[];
@@ -8,7 +9,7 @@ type ProductListProp = {
 
 const ProductList = ({ productList }: ProductListProp) => {
   return (
-    <>
+    <div id="product-list-wrap">
       {productList.length ? (
         productList.map((product) => {
           return (
@@ -18,7 +19,7 @@ const ProductList = ({ productList }: ProductListProp) => {
       ) : (
         <p>No products found for this category.</p>
       )}
-    </>
+    </div>
   );
 };
 

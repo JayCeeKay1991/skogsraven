@@ -13,7 +13,7 @@
   height: 38px;
   width: fit-content;
   border-radius: 10px;
-  color: white;
+  color: var(--theme-white);
   border: none;
   padding: 10px;
   font-weight: bold;

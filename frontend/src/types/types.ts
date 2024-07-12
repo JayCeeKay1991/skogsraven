@@ -9,6 +9,7 @@ export type ProductType = {
   category: string;
   price: number;
   picture: string;
+  shortDescription: string;
   description: string;
   available: boolean;
 };
