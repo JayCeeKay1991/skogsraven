@@ -5,5 +5,5 @@ export type ProductType = {
   shortDescription: string;
   description: string;
   price: number;
-  available: boolean;
+  numAvailable: number;
 };

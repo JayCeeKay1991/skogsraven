@@ -17,7 +17,9 @@ const ProductItem = ({ product }: ProductItemProp) => {
       <div id="product-item-price">
         <p style={{ fontWeight: 800 }}>{product.price}.00 €</p>
         <p style={{ fontSize: "10px" }}>
-          {product.available ? "On Stock 💚" : "Currently out of stock 💔"}
+          {product.numAvailable > 0
+            ? "On Stock 💚"
+            : "Currently out of stock 💔"}
         </p>
       </div>
     </div>

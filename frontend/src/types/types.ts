@@ -11,5 +11,5 @@ export type ProductType = {
   picture: string;
   shortDescription: string;
   description: string;
-  available: boolean;
+  numAvailable: number;
 };

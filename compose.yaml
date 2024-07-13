@@ -60,16 +60,6 @@ services:
       - rabbitmq
     environment:
       - RABBITMQ_URL=amqp://rabbitmq:5672
-  inventory-service:
-    build:
-      context: ./backend
-      dockerfile: inventory-service/Dockerfile
-    ports:
-      - "3006:3006"
-    depends_on:
-      - rabbitmq
-    environment:
-      - RABBITMQ_URL=amqp://rabbitmq:5672
   rabbitmq:
     image: rabbitmq:3-management
     ports:

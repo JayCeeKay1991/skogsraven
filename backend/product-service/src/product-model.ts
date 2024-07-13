@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
   shortDescription: String,
   description: String,
   price: Number,
-  available: Boolean,
+  numAvailable: Number,
 });
 
 export type ProductType = InferSchemaType<typeof productSchema>;
