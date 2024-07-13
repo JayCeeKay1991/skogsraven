@@ -1,5 +1,5 @@
 import UserModel from "./user-model";
-import { Request, Response } from "express";
+import { Response } from "express";
 import { CustomRequest } from "./middleware/auth";
 import bcrypt from "bcryptjs";
 
@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 export const createUser = async (req: CustomRequest, res: Response) => {
   try {
     const { email, password } = req.body;
+    console.log("💚", email, password);
     if (!email || !password) {
       return res
         .status(400)
@@ -18,10 +19,13 @@ export const createUser = async (req: CustomRequest, res: Response) => {
       return res.status(409).json({ message: "User already exists" });
 
     const hash = await bcrypt.hash(password, 10);
+    console.log("😘", hash);
     const newUser = new UserModel({
       ...req.body,
       password: hash,
     });
+    console.log("🥰", newUser);
+
     const user = await newUser.save();
 
     // SESSION

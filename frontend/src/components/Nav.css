@@ -5,11 +5,13 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  /* padding-top: 15px; */
-  /* padding-bottom: 15px; */
   padding: 15px;
   align-items: center;
   justify-content: space-between;
+}
+
+#nav-with-login {
+  position: relative;
 }
 
 #logo-wrap {
@@ -52,7 +54,7 @@
 }
 
 #search button {
-  background-color: lightgray;
+  background-color: var(--theme-lightgrey);
   outline: none;
   border: none;
   height: 42px;
@@ -76,4 +78,5 @@
   size: 30px;
   font-size: 40px;
   color: var(--theme-white);
+  cursor: pointer;
 }

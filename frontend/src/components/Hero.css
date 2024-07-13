@@ -4,6 +4,7 @@
   height: 410px;
   width: 100%;
   position: relative;
+  z-index: 0;
 }
 
 #hero-text {

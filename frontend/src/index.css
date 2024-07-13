@@ -14,6 +14,7 @@ body {
   --theme-light-green: rgb(157, 171, 158);
   --theme-light-green-50: rgba(213, 233, 209, 0.5);
   --theme-white: rgb(235, 228, 221);
+  --theme-lightgrey: lightgrey;
   background-image: linear-gradient(
     to bottom right,
     var(--theme-light-brown-50),

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { login, signup } from "../services/user-service";
+import "./LoginSignup.css";
 
 export type FormValues = {
   email: string;
@@ -11,7 +12,11 @@ const initialFormState = {
   password: "",
 };
 
-const LoginSignup = () => {
+type LoginSignupProps = {
+  setShowLoginForm: (showLoginForm: boolean) => void;
+};
+
+const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
   const [formType, setFormType] = useState("login");
   const [formState, setFormState] = useState<FormValues>(initialFormState);
 
@@ -30,6 +35,7 @@ const LoginSignup = () => {
     console.log({ loggedinUser });
 
     setFormState(initialFormState);
+    setShowLoginForm(false);
 
     // set user to the logged in user
     // if (loggedinUser) setUser(loggedinUser);
@@ -45,13 +51,14 @@ const LoginSignup = () => {
     console.log({ newUser });
 
     setFormState(initialFormState);
+    setShowLoginForm(false);
 
     // if (newUser) setUser(newUser);
     // else setFailedToLogin(true);
   };
 
   return (
-    <>
+    <div id="login-signup-wrap">
       <form
         onSubmit={formType === "login" ? handleLogin : handleSignup}
         id="login-signup-form"
@@ -70,17 +77,18 @@ const LoginSignup = () => {
           onChange={changeHandler}
           placeholder="password"
         ></input>
-        <button type="submit">
+        <button type="submit" className="login-signup-button">
           {formType === "login" ? "Login" : "Sign up"}
         </button>
       </form>
       <button
+        id="login-signup-toggle"
         className="transparent-button"
         onClick={() => setFormType(formType === "login" ? "signup" : "login")}
       >
         {formType === "login" ? "...or create account" : "back to login"}
       </button>
-    </>
+    </div>
   );
 };
 

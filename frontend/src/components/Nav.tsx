@@ -11,10 +11,10 @@ import "./Nav.css";
 import LoginSignup from "./LoginSignup";
 
 const Nav = () => {
-  const [showLoginForm, setShowloginForm] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
 
   return (
-    <>
+    <div id="nav-with-login">
       <nav id="nav-wrap">
         <div id="logo-wrap">
           <img id="nav-logo" src="logo-brown.png"></img>
@@ -40,13 +40,17 @@ const Nav = () => {
         <div id="login-logout">
           <BiLogInCircle
             className="login-logout-button"
-            onClick={() => setShowloginForm(!showLoginForm)}
+            onClick={() => setShowLoginForm(!showLoginForm)}
           />
           <BiLogOutCircle className="login-logout-button" />
         </div>
       </nav>
-      {showLoginForm ? <LoginSignup></LoginSignup> : <></>}
-    </>
+      {showLoginForm ? (
+        <LoginSignup setShowLoginForm={setShowLoginForm}></LoginSignup>
+      ) : (
+        <></>
+      )}
+    </div>
   );
 };
 
