@@ -3,6 +3,12 @@ export type CategoryType = {
   name: string;
 };
 
+export type UserType = {
+  _id: string;
+  email: string;
+  password: string;
+};
+
 export type ProductType = {
   _id: string;
   name: string;

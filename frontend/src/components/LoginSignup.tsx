@@ -1,0 +1,87 @@
+import React, { useState } from "react";
+import { login, signup } from "../services/user-service";
+
+export type FormValues = {
+  email: string;
+  password: string;
+};
+
+const initialFormState = {
+  email: "",
+  password: "",
+};
+
+const LoginSignup = () => {
+  const [formType, setFormType] = useState("login");
+  const [formState, setFormState] = useState<FormValues>(initialFormState);
+
+  // handler functions
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setFormState({ ...formState, [name]: value });
+  }
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { email, password } = formState;
+    const loginData = { email, password };
+
+    const loggedinUser = await login(loginData);
+    console.log({ loggedinUser });
+
+    setFormState(initialFormState);
+
+    // set user to the logged in user
+    // if (loggedinUser) setUser(loggedinUser);
+    // else setFailedToLogin(true);
+  };
+
+  const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const { email, password } = formState;
+    const signupData = { email, password };
+
+    const newUser = await signup(signupData);
+    console.log({ newUser });
+
+    setFormState(initialFormState);
+
+    // if (newUser) setUser(newUser);
+    // else setFailedToLogin(true);
+  };
+
+  return (
+    <>
+      <form
+        onSubmit={formType === "login" ? handleLogin : handleSignup}
+        id="login-signup-form"
+      >
+        <input
+          type="email"
+          name="email"
+          value={formState.email}
+          onChange={changeHandler}
+          placeholder="email"
+        ></input>
+        <input
+          type="password"
+          name="password"
+          value={formState.password}
+          onChange={changeHandler}
+          placeholder="password"
+        ></input>
+        <button type="submit">
+          {formType === "login" ? "Login" : "Sign up"}
+        </button>
+      </form>
+      <button
+        className="transparent-button"
+        onClick={() => setFormType(formType === "login" ? "signup" : "login")}
+      >
+        {formType === "login" ? "...or create account" : "back to login"}
+      </button>
+    </>
+  );
+};
+
+export default LoginSignup;
