@@ -9,9 +9,11 @@ import {
 } from "react-icons/bi";
 import "./Nav.css";
 import LoginSignup from "./LoginSignup";
+import { useAuthContext } from "../contexts/AuthContext";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const user = useAuthContext();
 
   return (
     <div id="nav-with-login">
@@ -38,11 +40,14 @@ const Nav = () => {
           </button>
         </div>
         <div id="login-logout">
-          <BiLogInCircle
-            className="login-logout-button"
-            onClick={() => setShowLoginForm(!showLoginForm)}
-          />
-          <BiLogOutCircle className="login-logout-button" />
+          {user ? (
+            <BiLogOutCircle className="login-logout-button" />
+          ) : (
+            <BiLogInCircle
+              className="login-logout-button"
+              onClick={() => setShowLoginForm(!showLoginForm)}
+            />
+          )}
         </div>
       </nav>
       {showLoginForm ? (

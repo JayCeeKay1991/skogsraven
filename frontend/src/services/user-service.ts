@@ -24,3 +24,21 @@ export const login = async (body: Omit<UserType, "_id">) => {
     throw error;
   }
 };
+
+export const getUserById = async (id: string) => {
+  try {
+    return await apiClient<UserType>(PORT, `user/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Get profile from the session
+export const getProfile = async () => {
+  try {
+    return await apiClient<UserType>(PORT, "user/me");
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

@@ -1,5 +1,5 @@
 import UserModel from "./user-model";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { CustomRequest } from "./middleware/auth";
 import bcrypt from "bcryptjs";
 
@@ -66,6 +66,25 @@ export const login = async (req: CustomRequest, res: Response) => {
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json("Error logging in user");
+  }
+};
+
+export const getUserById = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+    const user = await UserModel.findOne({ _id: userId });
+    if (!user) {
+      res.status(401).json({ message: "No user found." });
+    } else {
+      res.status(200).send(user);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({
+      message:
+        "An unexpected error occurred while getting the user. Please try again later.",
+    });
   }
 };
 
