@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { login, signup } from "../services/user-service";
 import "./LoginSignup.css";
+import { useAuthContext } from "../contexts/AuthContext";
 
 export type FormValues = {
   email: string;
@@ -19,6 +20,7 @@ type LoginSignupProps = {
 const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
   const [formType, setFormType] = useState("login");
   const [formState, setFormState] = useState<FormValues>(initialFormState);
+  const { setUser } = useAuthContext();
 
   // handler functions
   function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -38,7 +40,7 @@ const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
     setShowLoginForm(false);
 
     // set user to the logged in user
-    // if (loggedinUser) setUser(loggedinUser);
+    if (loggedinUser) setUser(loggedinUser);
     // else setFailedToLogin(true);
   };
 
@@ -53,7 +55,7 @@ const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
     setFormState(initialFormState);
     setShowLoginForm(false);
 
-    // if (newUser) setUser(newUser);
+    if (newUser) setUser(newUser);
     // else setFailedToLogin(true);
   };
 

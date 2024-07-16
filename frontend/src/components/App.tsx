@@ -7,10 +7,11 @@ import CategoryList from "./CategoryList";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import SubNav from "./SubNav";
-import AuthContextProvider from "../contexts/AuthContext";
+import AuthContextProvider, { useAuthContext } from "../contexts/AuthContext";
 
 const App = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
+  const { user, setUser } = useAuthContext();
 
   useEffect(() => {
     const fetchAndSet = async () => {

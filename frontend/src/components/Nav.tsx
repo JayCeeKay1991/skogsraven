@@ -10,10 +10,21 @@ import {
 import "./Nav.css";
 import LoginSignup from "./LoginSignup";
 import { useAuthContext } from "../contexts/AuthContext";
+import { initialStateUser } from "../contexts/AuthContext";
+import { logout } from "../services/user-service";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const user = useAuthContext();
+  const { user, setUser } = useAuthContext();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setUser(initialStateUser);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div id="nav-with-login">
@@ -40,8 +51,11 @@ const Nav = () => {
           </button>
         </div>
         <div id="login-logout">
-          {user ? (
-            <BiLogOutCircle className="login-logout-button" />
+          {user._id ? (
+            <BiLogOutCircle
+              className="login-logout-button"
+              onClick={handleLogout}
+            />
           ) : (
             <BiLogInCircle
               className="login-logout-button"

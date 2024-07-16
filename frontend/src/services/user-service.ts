@@ -42,3 +42,11 @@ export const getProfile = async () => {
     throw error;
   }
 };
+
+export const logout = async () => {
+  try {
+    return await apiClient(PORT, "user/logout", "POST");
+  } catch (error) {
+    console.error(error);
+  }
+};
