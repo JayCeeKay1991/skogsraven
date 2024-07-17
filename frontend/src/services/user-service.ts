@@ -17,7 +17,6 @@ export const signup = async (body: Omit<UserType, "_id">) => {
 export const login = async (body: Omit<UserType, "_id">) => {
   try {
     const user = await apiClient<UserType>(PORT, "user/login", "POST", body);
-    console.log({ user });
     return user;
   } catch (error) {
     console.error(error);

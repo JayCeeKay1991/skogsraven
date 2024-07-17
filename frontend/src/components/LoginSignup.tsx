@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { login, signup } from "../services/user-service";
+import React, { useState, useEffect } from "react";
+import { login, signup, getProfile } from "../services/user-service";
 import "./LoginSignup.css";
 import { useAuthContext } from "../contexts/AuthContext";
 
@@ -32,15 +32,10 @@ const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
     e.preventDefault();
     const { email, password } = formState;
     const loginData = { email, password };
-
     const loggedinUser = await login(loginData);
-    console.log({ loggedinUser });
-
     setFormState(initialFormState);
     setShowLoginForm(false);
-
-    // set user to the logged in user
-    if (loggedinUser) setUser(loggedinUser);
+    setUser(loggedinUser);
     // else setFailedToLogin(true);
   };
 
@@ -48,13 +43,9 @@ const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
     e.preventDefault();
     const { email, password } = formState;
     const signupData = { email, password };
-
     const newUser = await signup(signupData);
-    console.log({ newUser });
-
     setFormState(initialFormState);
     setShowLoginForm(false);
-
     if (newUser) setUser(newUser);
     // else setFailedToLogin(true);
   };

@@ -9,44 +9,42 @@ import React, {
 } from "react";
 import { UserType } from "../types/types";
 import { getProfile } from "../services/user-service";
+import { login } from "../services/user-service";
 
-type AuthContext = {
+type AuthContextType = {
   user: UserType;
   setUser: Dispatch<SetStateAction<UserType>>;
 };
 
-export const initialStateUser = {
+export const initialStateUser: UserType = {
   _id: "",
   email: "",
   password: "",
 };
 
-const initialAuthContext = {
+const initialAuthContext: AuthContextType = {
   user: initialStateUser,
   setUser: () => {},
 };
 
-export const AuthContext = createContext<AuthContext>(initialAuthContext);
+export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
-export default function AuthContextProvider({ children }: PropsWithChildren) {
+export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<UserType>(initialStateUser);
 
   useEffect(() => {
-    const fetchAndSetUser = async () => {
+    const checkLoggedIn = async () => {
       try {
         // get user profile if there is a session
         const userProfile = await getProfile();
-        if (userProfile._id) {
-          console.log("💚", userProfile);
-          setUser(userProfile);
-        } else {
-          console.log("No logged in user.");
-        }
+        console.log("💚", userProfile);
+        setUser(userProfile);
       } catch (error) {
-        console.error(error);
+        console.error("No user logged in.");
       }
+
+      checkLoggedIn();
     };
-    fetchAndSetUser();
   }, []);
 
   return (
@@ -54,8 +52,6 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuthContext() {
-  return useContext(AuthContext);
-}
+export const useAuthContext = () => useContext(AuthContext);

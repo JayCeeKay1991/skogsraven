@@ -3,12 +3,13 @@ import { initializeRabbitMQ } from "./events/rabbitmq";
 import cors from "cors";
 import router from "./user-router";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import config from "./config/config";
 import mongoose from "mongoose";
 
 const port = 3001;
 const secret = process.env.USERSECRET || "not the secret";
-const dbUrl = `${config.dbUrl}${config.dbNameUs}`;
+const dbUrl = config.dbUrl;
 const app = express();
 
 app.use(
@@ -24,9 +25,13 @@ app.use(
     secret: secret,
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: `${dbUrl}${config.dbNameUs}`,
+      collectionName: "sessions",
+    }),
     cookie: {
       maxAge: 1000 * 60 * 60, // 1hr
-      sameSite: true,
+      sameSite: "lax",
       httpOnly: false,
       secure: false,
     },
@@ -39,7 +44,7 @@ app.use(router);
 
 initializeRabbitMQ()
   .then(async () => {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(`${dbUrl}${config.dbNameUs}`);
     console.log("User database successfully connected to server 🚀");
     app.listen(port, () => {
       console.log(`User service listening on port ${port}`);

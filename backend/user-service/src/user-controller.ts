@@ -90,11 +90,8 @@ export const getUserById = async (req: Request, res: Response) => {
 
 // get user profile for the session
 export const profile = async (req: CustomRequest, res: Response) => {
-  try {
-    res.status(200).send(req.user);
-  } catch {
-    res.status(500).send({ Error, message: "An unexpected error occured." });
-  }
+  const user = await UserModel.findById(req.session.uid);
+  res.status(200).json(user);
 };
 
 export const logout = (req: CustomRequest, res: Response) => {
