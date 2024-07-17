@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { CategoryType } from "../types/types";
 import { getCategories } from "../services/category-service";
-import Nav from "./Nav";
-import CategoryList from "./CategoryList";
-import Footer from "./Footer";
-import Hero from "./Hero";
-import SubNav from "./SubNav";
-import { useAuthContext, AuthContextProvider } from "../contexts/AuthContext";
+import CategoryList from "../components/CategoryList";
+import Hero from "../components/Hero";
+
+import { useAuthContext } from "../contexts/AuthContext";
+import { Outlet, Link } from "react-router-dom";
 
 const App = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
-  const { user, setUser } = useAuthContext();
 
   useEffect(() => {
     const fetchAndSet = async () => {
@@ -27,13 +25,10 @@ const App = () => {
   }, []);
 
   return (
-    <AuthContextProvider>
-      <Nav></Nav>
-      <SubNav></SubNav>
+    <>
       <Hero></Hero>
       <CategoryList categoryList={categoryList}></CategoryList>
-      <Footer></Footer>
-    </AuthContextProvider>
+    </>
   );
 };
 
