@@ -19,3 +19,8 @@ export type ProductType = {
   description: string;
   numAvailable: number;
 };
+
+export type CartItemType = {
+  product: string;
+  quantity: number;
+};

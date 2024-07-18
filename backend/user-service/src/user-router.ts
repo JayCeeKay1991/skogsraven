@@ -19,8 +19,8 @@ router.get("/user/me", authMiddleware, profile);
 router.post("/user/logout", authMiddleware, logout);
 
 // cart router
-router.get("/cart", authMiddleware, getCart);
-router.post("/cart/add", authMiddleware, addToCart);
-router.post("/cart/remove", authMiddleware, removeFromCart);
+router.get("/user/cart", authMiddleware, getCart);
+router.post("/user/cart/add", authMiddleware, addToCart);
+router.post("/user/cart/remove", authMiddleware, removeFromCart);
 
 export default router;
