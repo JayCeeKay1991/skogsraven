@@ -29,6 +29,7 @@
 
 #user-buttons {
   background-color: var(--theme-dark-green);
+  color: var(--theme-white);
   border-radius: 10px;
   display: flex;
   gap: 15px;

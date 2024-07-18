@@ -16,6 +16,6 @@
   color: var(--theme-white);
   border: none;
   padding: 10px;
-  font-weight: bold;
+  font-weight: 600;
   font-size: large;
 }

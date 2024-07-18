@@ -12,15 +12,18 @@ import LoginSignup from "./LoginSignup";
 import { useAuthContext } from "../contexts/AuthContext";
 import { initialStateUser } from "../contexts/AuthContext";
 import { logout } from "../services/user-service";
+import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const { user, setUser } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await logout();
       setUser(initialStateUser);
+      navigate("/home");
     } catch (error) {
       console.log(error);
     }
@@ -29,10 +32,12 @@ const Nav = () => {
   return (
     <div id="nav-with-login">
       <nav id="nav-wrap">
-        <div id="logo-wrap">
-          <img id="nav-logo" src="logo-brown.png"></img>
-          <h2>Skogsräven</h2>
-        </div>
+        <Link to={"/home"} style={{ textDecorationLine: "none" }}>
+          <div id="logo-wrap">
+            <img id="nav-logo" src="logo-brown.png"></img>
+            <h2>Skogsräven</h2>
+          </div>
+        </Link>
         <form id="search">
           <input placeholder="Search..."></input>
           <button className="transparent-button">
@@ -40,15 +45,21 @@ const Nav = () => {
           </button>
         </form>
         <div id="user-buttons">
-          <button className="transparent-button">
-            <BiCart />
-          </button>
-          <button className="transparent-button">
-            <BiMessage />
-          </button>
-          <button className="transparent-button">
-            <BiUser />
-          </button>
+          <Link to={"/order"}>
+            <button className="transparent-button">
+              <BiCart />
+            </button>
+          </Link>
+          <Link to={"/messages"}>
+            <button className="transparent-button">
+              <BiMessage />
+            </button>
+          </Link>
+          <Link to={"/profile"}>
+            <button className="transparent-button">
+              <BiUser />
+            </button>
+          </Link>
         </div>
         <div id="login-logout">
           {user._id ? (

@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 import SubNav from "../components/SubNav";
 import Footer from "../components/Footer";
 
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
