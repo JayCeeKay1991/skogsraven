@@ -14,13 +14,11 @@ const ProductItem = ({ product }: ProductItemProp) => {
         <h2>{product.name}</h2>
         <p>{product.shortDescription}</p>
         <h3>{product.price}.00 €</h3>
-        <p>
-          {product.numAvailable > 0 ? (
-            <button>Add to cart</button>
-          ) : (
-            "Currently out of stock 💔"
-          )}
-        </p>
+        {product.numAvailable > 0 ? (
+          <button id="cart-button">Add to cart</button>
+        ) : (
+          <p>"Currently out of stock 💔"</p>
+        )}
       </div>
     </div>
   );

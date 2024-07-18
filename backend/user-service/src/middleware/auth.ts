@@ -3,9 +3,15 @@ import { Session } from "express-session";
 
 import UserModel, { UserType } from "../user-model";
 
+export interface CartItem {
+  product: string;
+  quantity: number;
+}
+
 // Define custom session interface
 interface CustomSession extends Session {
   uid?: string; // user ID to match the _id
+  cart?: CartItem[];
 }
 
 // Extend the Request interface with the custom session type
