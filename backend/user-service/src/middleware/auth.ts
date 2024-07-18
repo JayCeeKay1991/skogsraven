@@ -5,16 +5,16 @@ import UserModel, { UserType } from "../user-model";
 
 export interface CartItem {
   product: string;
+  productId: string;
   quantity: number;
+  price: number;
 }
 
-// Define custom session interface
 interface CustomSession extends Session {
-  uid?: string; // user ID to match the _id
+  uid?: string;
   cart?: CartItem[];
 }
 
-// Extend the Request interface with the custom session type
 export interface CustomRequest extends Request {
   session: CustomSession;
   user?: UserType;

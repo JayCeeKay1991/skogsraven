@@ -9,12 +9,18 @@ import React, {
 } from "react";
 import { CartItemType } from "@/types/types";
 import { getCart, addToCart, removeFromCart } from "../services/cart-service";
+import { useAuthContext } from "./AuthContext";
 
 type CartContextType = {
   cart: CartItemType[];
   setCart: Dispatch<SetStateAction<CartItemType[]>>;
-  addItem: (product: string, quantity: number) => void;
-  removeItem: (product: string) => void;
+  addItem: (
+    productId: string,
+    product: string,
+    quantity: number,
+    price: number
+  ) => void;
+  removeItem: (productId: string) => void;
 };
 
 const initialCartContext: CartContextType = {
@@ -28,22 +34,30 @@ export const CartContext = createContext<CartContextType>(initialCartContext);
 
 export const CartContextProvider = ({ children }: PropsWithChildren) => {
   const [cart, setCart] = useState<CartItemType[]>([]);
+  const { user } = useAuthContext();
 
   useEffect(() => {
-    const checkCart = async () => {
-      const cart = await getCart();
-      if (cart) setCart(cart);
-    };
-    checkCart();
+    if (user._id) {
+      const checkCart = async () => {
+        const cart = await getCart();
+        if (cart) setCart(cart);
+      };
+      checkCart();
+    }
   }, []);
 
-  const addItem = async (product: string, quantity: number) => {
-    const updatedCart = await addToCart(product, quantity);
+  const addItem = async (
+    productId: string,
+    product: string,
+    quantity: number,
+    price: number
+  ) => {
+    const updatedCart = await addToCart(productId, product, quantity, price);
     setCart(updatedCart);
   };
 
-  const removeItem = async (product: string) => {
-    const updatedCart = await removeFromCart(product);
+  const removeItem = async (productId: string) => {
+    const updatedCart = await removeFromCart(productId);
     setCart(updatedCart);
   };
 

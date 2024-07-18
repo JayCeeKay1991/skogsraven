@@ -11,7 +11,7 @@ const ProductItem = ({ product }: ProductItemProp) => {
   const { cart, addItem } = useCartContext();
 
   const handleAddToCart = () => {
-    addItem(product._id, 1);
+    addItem(product._id, product.name, 1, product.price);
     console.log("Cart:", cart);
   };
 
