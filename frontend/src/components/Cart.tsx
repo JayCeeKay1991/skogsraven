@@ -1,14 +1,33 @@
 import React from "react";
 import { useCartContext } from "../contexts/CartContext";
-import ProductItem from "./ProductItem";
 import "./Cart.css";
 
 const Cart = () => {
-  const { cart, setCart, addItem, removeItem } = useCartContext();
+  const { cart, setCart, removeItem, emptyCart } = useCartContext();
+
+  const incrementQuantity = (productId: string) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.productId === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  const decrementQuantity = (productId: string) => {
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.productId === productId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
 
   return (
     <section id="cart-wrap">
-      <h2>Your order in process</h2>
+      <h2>Here's what's in your cart 🛒</h2>
       <div id="cart-header">
         <h3 className="first-col">Quantity</h3>
         <h3 className="second-col">Item</h3>
@@ -22,8 +41,18 @@ const Cart = () => {
             <div id="item-qty" className="first-col">
               <p>{item.quantity}</p>
               <div id="qty-button">
-                <button className="transparent-button">▲</button>
-                <button className="transparent-button">▼</button>
+                <button
+                  className="transparent-button"
+                  onClick={() => incrementQuantity(item.productId)}
+                >
+                  ▲
+                </button>
+                <button
+                  className="transparent-button"
+                  onClick={() => decrementQuantity(item.productId)}
+                >
+                  ▼
+                </button>
               </div>
             </div>
             <p className="second-col">{item.product}</p>
@@ -40,6 +69,12 @@ const Cart = () => {
       ) : (
         <></>
       )}
+      <div id="cart-action-buttons">
+        <button id="order-button">Order now</button>
+        <button id="delete-order-button" onClick={emptyCart}>
+          Delete all
+        </button>
+      </div>
     </section>
   );
 };

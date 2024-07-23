@@ -21,6 +21,7 @@ type CartContextType = {
     price: number
   ) => void;
   removeItem: (productId: string) => void;
+  emptyCart: () => void;
 };
 
 const initialCartContext: CartContextType = {
@@ -28,6 +29,7 @@ const initialCartContext: CartContextType = {
   setCart: () => {},
   addItem: () => {},
   removeItem: () => {},
+  emptyCart: () => {},
 };
 
 export const CartContext = createContext<CartContextType>(initialCartContext);
@@ -61,8 +63,17 @@ export const CartContextProvider = ({ children }: PropsWithChildren) => {
     setCart(updatedCart);
   };
 
+  const emptyCart = async () => {
+    for (const item of cart) {
+      await removeFromCart(item.productId);
+    }
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, setCart, addItem, removeItem }}>
+    <CartContext.Provider
+      value={{ cart, setCart, addItem, removeItem, emptyCart }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -3,6 +3,9 @@
   margin: 50px;
   min-height: 300px;
 }
+#cart-wrap h2 {
+  margin-bottom: 40px;
+}
 
 #cart-header,
 #item-details {
@@ -44,4 +47,25 @@
 }
 .fourth-col {
   grid-column: 5;
+}
+
+#cart-action-buttons button {
+  height: 50px;
+  width: 140px;
+  font-size: 18px;
+  border-radius: 12px;
+  margin-top: 50px;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+#order-button {
+  border: none;
+  background-color: var(--theme-dark-green);
+  color: var(--theme-white);
+}
+#delete-order-button {
+  background-color: var(--theme-lightgrey);
+  color: var(--theme-dark-green);
+  border: 1px solid var(--theme-dark-green);
 }
