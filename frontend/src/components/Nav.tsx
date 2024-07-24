@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BiLogInCircle,
   BiLogOutCircle,
@@ -13,10 +13,13 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { initialStateUser } from "../contexts/AuthContext";
 import { logout } from "../services/user-service";
 import { Link, useNavigate } from "react-router-dom";
+import { useCartContext } from "../contexts/CartContext";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [cartQuantity, setCartQuantity] = useState(0);
   const { user, setUser } = useAuthContext();
+  const { cart } = useCartContext();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -28,6 +31,15 @@ const Nav = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (cart.length) {
+      const numberOfArticles = cart.reduce((acc, item) => {
+        return (acc += item.quantity);
+      }, 0);
+      setCartQuantity(numberOfArticles);
+    }
+  }, []);
 
   return (
     <div id="nav-with-login">
@@ -49,6 +61,13 @@ const Nav = () => {
             <button className="transparent-button">
               <BiCart />
             </button>
+            {cart.length ? (
+              <div id="cart-badge" className="nav-badge">
+                <h4>{cartQuantity}</h4>
+              </div>
+            ) : (
+              <></>
+            )}
           </Link>
           <Link to={"/messages"}>
             <button className="transparent-button">

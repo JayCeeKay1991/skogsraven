@@ -36,6 +36,7 @@
   width: 200px;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 #user-buttons button {
@@ -80,4 +81,25 @@
   font-size: 40px;
   color: var(--theme-white);
   cursor: pointer;
+}
+
+.nav-badge {
+  background-color: brown;
+  color: var(--theme-white);
+  height: 18px;
+  width: 18px;
+  border-radius: 18px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+}
+
+#cart-badge {
+  top: 5px;
+  left: 50px;
+}
+
+#cart-badge h4 {
+  margin: 0;
 }
