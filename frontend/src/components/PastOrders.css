@@ -1,0 +1,5 @@
+#past-orders-wrap {
+  width: 480px;
+  margin: 50px;
+  background-color: var(--theme-lightgrey);
+}

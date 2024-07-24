@@ -26,3 +26,13 @@ export type CartItemType = {
   quantity: number;
   price: number;
 };
+
+export type OrderType = {
+  user: string;
+  orderNumber: string;
+  date: string;
+  products: CartItemType[];
+  sumTotal: number;
+  deliveryFee: number;
+  status: string;
+};

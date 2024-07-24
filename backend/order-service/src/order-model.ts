@@ -8,6 +8,14 @@ const orderSchema = new mongoose.Schema({
   sumTotal: Number,
   deliveryFee: Number,
   status: String,
+  products: [
+    {
+      productId: String,
+      product: String,
+      quantity: Number,
+      price: Number,
+    },
+  ],
 });
 
 export type OrderType = InferSchemaType<typeof orderSchema>;
