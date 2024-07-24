@@ -1,5 +1,6 @@
 import React from "react";
 import { useCartContext } from "../contexts/CartContext";
+import { placeOrder } from "../services/cart-service";
 import "./Cart.css";
 
 const Cart = () => {
@@ -23,6 +24,17 @@ const Cart = () => {
           : item
       )
     );
+  };
+
+  const handlePlaceOrder = async () => {
+    try {
+      const response = await placeOrder();
+      if (response.message === "Order placed successfully") {
+        setCart([]); // Clear the cart
+      }
+    } catch (error) {
+      console.error("Failed to place order", error);
+    }
   };
 
   return (
@@ -70,7 +82,9 @@ const Cart = () => {
         <></>
       )}
       <div id="cart-action-buttons">
-        <button id="order-button">Order now</button>
+        <button id="order-button" onClick={handlePlaceOrder}>
+          Order now
+        </button>
         <button id="delete-order-button" onClick={emptyCart}>
           Delete all
         </button>

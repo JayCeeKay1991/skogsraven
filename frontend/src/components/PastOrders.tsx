@@ -30,7 +30,7 @@ const PastOrders = () => {
         orderList.map((order) => {
           return (
             <div id="past-order-item">
-              <p>{order.orderNumber}</p>
+              <p>{order._id}</p>
               <p>{order.date}</p>
               <p>Total: {order.sumTotal + order.deliveryFee}</p>
             </div>

@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   user: String,
-  orderNumber: { type: String, required: true },
   date: Date,
   sumTotal: Number,
   deliveryFee: Number,

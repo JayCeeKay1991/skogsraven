@@ -2,23 +2,18 @@ import { Request, Response } from "express";
 import { OrderType } from "./order-model";
 import OrderModel from "./order-model";
 
-export const createOrder = async (req: Request, res: Response) => {
+export const createOrder = async (orderData: OrderType) => {
   try {
-    const orderData = req.body as OrderType;
-
-    // Check if orderData has the required fields
-    if (orderData && orderData.orderNumber) {
-      const newOrder = new OrderModel(orderData);
-      const savedOrder = await newOrder.save();
-      res.status(201).json(savedOrder);
-    } else {
-      res.status(400).json({ error: "Missing required order fields" });
+    if (!orderData) {
+      throw new Error("Missing required order fields");
     }
+    const newOrder = new OrderModel(orderData);
+    return await newOrder.save();
   } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      error: "An unexpected error occurred while creating the order.",
-    });
+    console.error(
+      error,
+      "An unexpected error occurred while creating the order."
+    );
   }
 };
 
@@ -39,7 +34,7 @@ export const updateOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body as OrderType;
     const orderId = req.params.id;
-    if (orderData && orderData.orderNumber) {
+    if (orderData) {
       const updatedOrder = OrderModel.findOneAndUpdate(
         { _id: orderId },
         {

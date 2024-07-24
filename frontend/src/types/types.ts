@@ -28,8 +28,8 @@ export type CartItemType = {
 };
 
 export type OrderType = {
+  _id?: string;
   user: string;
-  orderNumber: string;
   date: string;
   products: CartItemType[];
   sumTotal: number;

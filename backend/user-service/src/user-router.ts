@@ -6,7 +6,12 @@ import {
   profile,
   getUserById,
 } from "./user-controller";
-import { getCart, addToCart, removeFromCart } from "./cart-controller";
+import {
+  getCart,
+  addToCart,
+  removeFromCart,
+  placeOrder,
+} from "./cart-controller";
 import authMiddleware from "./middleware/auth";
 
 const router = express.Router();
@@ -22,5 +27,8 @@ router.post("/user/logout", authMiddleware, logout);
 router.get("/user/cart", authMiddleware, getCart);
 router.post("/user/cart/add", authMiddleware, addToCart);
 router.post("/user/cart/remove", authMiddleware, removeFromCart);
+
+// order interface
+router.post("/order", authMiddleware, placeOrder);
 
 export default router;

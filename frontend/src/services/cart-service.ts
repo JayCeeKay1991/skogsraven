@@ -32,3 +32,7 @@ export const removeFromCart = async (
     productId,
   });
 };
+
+export const placeOrder = async (): Promise<{ message: string }> => {
+  return await apiClient<{ message: string }>(PORT, "order", "POST");
+};
