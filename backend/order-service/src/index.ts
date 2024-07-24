@@ -3,9 +3,11 @@ import cors from "cors";
 import router from "./order-router";
 import mongoose from "mongoose";
 import config from "./config/config";
+import connectRabbitMQ from "./events/rabbitmq";
+import { consumeOrderMessage } from "./events/consumer";
 
 const port = config.port;
-const dbUrl = `${config.dbUrl}${config.dbNameOrd}`;
+const dbUrl = config.dbUrl;
 const app = express();
 
 app.use(
@@ -19,18 +21,17 @@ app.use(express.json());
 
 app.use(router);
 
-async function main() {
-  try {
-    await mongoose.connect(dbUrl);
+connectRabbitMQ()
+  .then(async () => {
+    await mongoose.connect(`${dbUrl}${config.dbNameOrd}`);
     console.log("Order database successfully connected to server 🚀");
-
+    consumeOrderMessage();
     app.listen(port, () => {
-      console.log(`Order server listening on port ${port}`);
+      console.log(`Order service listening on port ${port}`);
     });
-  } catch (error) {
-    console.log("🔥 Error in the order database connection.", error);
-  }
-}
-main();
+  })
+  .catch((err) => {
+    console.error("Failed to initialize RabbitMQ:", err);
+  });
 
 export default mongoose;

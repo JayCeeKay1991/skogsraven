@@ -24,4 +24,16 @@ const connectRabbitMQ = async (): Promise<Channel> => {
   }
 };
 
+export const getChannel = async (): Promise<Channel> => {
+  if (!channel) {
+    channel = await connectRabbitMQ();
+  }
+  return channel;
+};
+
+export const assertQueue = async (queueName: string) => {
+  const ch = await getChannel();
+  await ch.assertQueue(queueName, { durable: true });
+};
+
 export default connectRabbitMQ;

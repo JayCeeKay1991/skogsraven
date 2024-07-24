@@ -1,8 +1,8 @@
-import connectRabbitMQ from "./rabbitmq";
+import { getChannel } from "./rabbitmq";
 import { OrderType } from "../types";
 
 export const sendOrderMessage = async (order: OrderType) => {
-  const channel = await connectRabbitMQ();
+  const channel = await getChannel();
   try {
     // Example of asserting a queue
     await channel.assertQueue("orderQueue", { durable: false });

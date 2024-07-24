@@ -1,5 +1,6 @@
 import express from "express";
-import { initializeRabbitMQ } from "./events/rabbitmq";
+import connectRabbitMQ from "./events/rabbitmq";
+
 import cors from "cors";
 import router from "./user-router";
 import session from "express-session";
@@ -7,7 +8,7 @@ import MongoStore from "connect-mongo";
 import config from "./config/config";
 import mongoose from "mongoose";
 
-const port = 3001;
+const port = config.port;
 const secret = process.env.USERSECRET || "not the secret";
 const dbUrl = config.dbUrl;
 const app = express();
@@ -42,7 +43,7 @@ app.use(express.json());
 
 app.use(router);
 
-initializeRabbitMQ()
+connectRabbitMQ()
   .then(async () => {
     await mongoose.connect(`${dbUrl}${config.dbNameUs}`);
     console.log("User database successfully connected to server 🚀");
