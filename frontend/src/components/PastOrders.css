@@ -3,3 +3,11 @@
   margin: 50px;
   background-color: var(--theme-lightgrey);
 }
+
+#past-order-item {
+  border: 1px solid var(--theme-dark-green);
+  border-radius: 10px;
+  margin: 15px;
+  padding-left: 10px;
+  line-height: 0.8;
+}

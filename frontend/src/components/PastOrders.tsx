@@ -3,6 +3,7 @@ import { getOrdersByUser } from "../services/order-service";
 import "./PastOrders.css";
 import { useAuthContext } from "../contexts/AuthContext";
 import { OrderType } from "../types/types";
+import moment from "moment";
 
 const PastOrders = () => {
   const [orderList, setOrderList] = useState<OrderType[]>([]);
@@ -30,9 +31,10 @@ const PastOrders = () => {
         orderList.map((order) => {
           return (
             <div id="past-order-item">
-              <p>{order._id}</p>
-              <p>{order.date}</p>
-              <p>Total: {order.sumTotal + order.deliveryFee}</p>
+              <p>Order number: {order._id}</p>
+              <p>{moment(order.date).format("ddd, DD/MM/YYYY - HH:mm")}</p>
+              <p>Total: {order.sumTotal + order.deliveryFee} €</p>
+              <h4>{order.status}</h4>
             </div>
           );
         })
