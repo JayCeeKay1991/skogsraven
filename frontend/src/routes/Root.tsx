@@ -7,12 +7,14 @@ import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
-    <>
-      <Nav></Nav>
-      <SubNav></SubNav>
-      <Outlet></Outlet>
-      <Footer></Footer>
-    </>
+    <div id="root-container">
+      <Nav />
+      <SubNav />
+      <div id="content">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
   );
 };
 export default Root;

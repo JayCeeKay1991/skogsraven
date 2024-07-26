@@ -39,7 +39,7 @@ const Nav = () => {
       }, 0);
       setCartQuantity(numberOfArticles);
     }
-  }, []);
+  }, [cart]);
 
   return (
     <div id="nav-with-login">

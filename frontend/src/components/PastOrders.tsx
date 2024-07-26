@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { getOrdersByUser } from "../services/order-service";
+import React from "react";
 import "./PastOrders.css";
-import { useAuthContext } from "../contexts/AuthContext";
 import { OrderType } from "../types/types";
 import moment from "moment";
 
-const PastOrders = () => {
-  const [orderList, setOrderList] = useState<OrderType[]>([]);
-  const { user } = useAuthContext();
+type PastOrdersPropsType = {
+  orderList: OrderType[];
+};
 
-  useEffect(() => {
-    const fetchAndSet = async () => {
-      try {
-        if (!user) console.log("No logged in user.");
-        const ordersByUser = await getOrdersByUser(user._id);
-
-        if (ordersByUser && ordersByUser.length) setOrderList(ordersByUser);
-        console.log("No orders found for this user.");
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchAndSet();
-  }, []);
-
+const PastOrders = ({ orderList }: PastOrdersPropsType) => {
   return (
     <div id="past-orders-wrap">
       <h3>Here are your past orders ⌛️</h3>
-      {orderList.length ? (
+      {orderList && orderList.length ? (
         orderList.map((order) => {
           return (
             <div id="past-order-item">

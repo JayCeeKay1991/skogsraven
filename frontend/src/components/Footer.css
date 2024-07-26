@@ -1,8 +1,35 @@
 #footer-wrap {
   background-color: var(--theme-dark-brown);
-  color: white;
-  height: 200px;
+  color: var(--theme-white);
+  height: 260px;
   width: 100%;
   position: static;
   bottom: 0;
+}
+
+#footer-logo {
+  display: flex;
+  gap: 10px;
+  color: var(--theme-light-brown);
+  align-items: center;
+  font-family: "Permanent Marker";
+  font-size: large;
+}
+
+#footer-logo img {
+  height: 40px;
+}
+
+#footer-columns {
+  margin: 50px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+#footer-links {
+  display: flex;
+  flex-direction: column;
+  line-height: 2;
+  text-decoration: underline;
 }

@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  min-width: 320px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 #root {
@@ -18,6 +20,17 @@ body {
   background-color: var(--theme-white);
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+}
+
+#root-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#content {
+  flex: 1;
+  background-color: #e9ecef;
 }
 
 .transparent-button {
