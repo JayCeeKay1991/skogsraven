@@ -35,6 +35,7 @@ export const getUserById = async (id: string) => {
 // Get profile from the session
 export const getProfile = async () => {
   try {
+    console.log("Here!");
     return await apiClient<UserType>(PORT, "user/me");
   } catch (error) {
     console.error(error);

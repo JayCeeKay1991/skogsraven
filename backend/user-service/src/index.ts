@@ -52,5 +52,5 @@ connectRabbitMQ()
     });
   })
   .catch((err) => {
-    console.error("Failed to initialize RabbitMQ:", err);
+    console.error("Failed to initialize RabbitMQ for users:", err);
   });

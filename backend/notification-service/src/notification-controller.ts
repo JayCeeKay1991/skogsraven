@@ -9,14 +9,17 @@ export const storeNotification = async (notification: NotificationType) => {
 };
 
 export const getNotificationsByUser = async (userId: String) => {
+  console.log("💚💚💚💚💚");
   const keys = await redisClient.keys(`notification:${userId}:*`);
   const notifications = [];
   for (const key of keys) {
     const notification = await redisClient.get(key);
     if (notification) notifications.push(JSON.parse(notification));
   }
+  console.log("😘", notifications);
   const dbNotifications = await NotificationModel.find({ userId }).sort({
     date: -1,
   });
+  console.log("🥰", dbNotifications);
   return notifications.concat(dbNotifications);
 };

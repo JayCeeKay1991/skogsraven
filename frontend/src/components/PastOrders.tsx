@@ -14,7 +14,7 @@ const PastOrders = ({ orderList }: PastOrdersPropsType) => {
       {orderList && orderList.length ? (
         orderList.map((order) => {
           return (
-            <div id="past-order-item">
+            <div id="past-order-item" key={order._id}>
               <p>Order number: {order._id}</p>
               <p>{moment(order.date).format("ddd, DD/MM/YYYY - HH:mm")}</p>
               <p>Total: {order.sumTotal + order.deliveryFee} €</p>

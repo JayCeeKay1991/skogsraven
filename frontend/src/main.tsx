@@ -8,6 +8,7 @@ import Messages from "./routes/Messages";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { CartContextProvider } from "./contexts/CartContext";
+import { NotificationContextProvider } from "./contexts/NotificationContext";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -42,9 +43,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <CartContextProvider>
-        <RouterProvider router={router} />
-      </CartContextProvider>
+      <NotificationContextProvider>
+        <CartContextProvider>
+          <RouterProvider router={router} />
+        </CartContextProvider>
+      </NotificationContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

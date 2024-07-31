@@ -18,8 +18,10 @@ import { useCartContext } from "../contexts/CartContext";
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(0);
+
   const { user, setUser } = useAuthContext();
   const { cart } = useCartContext();
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {

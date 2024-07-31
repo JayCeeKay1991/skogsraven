@@ -9,7 +9,6 @@ import React, {
 } from "react";
 import { UserType } from "../types/types";
 import { getProfile } from "../services/user-service";
-import { login } from "../services/user-service";
 
 type AuthContextType = {
   user: UserType;
@@ -37,12 +36,11 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       try {
         // get user profile if there is a session
         const userProfile = await getProfile();
-        console.log("💚", userProfile);
         setUser(userProfile);
+        console.log("💚", user);
       } catch (error) {
         console.error("No user logged in.");
       }
-
       checkLoggedIn();
     };
   }, []);

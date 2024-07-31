@@ -7,6 +7,7 @@ import {
 const router = express.Router();
 
 router.post("notification/", storeNotification);
-router.get("notification/:userId", getNotificationsByUser);
+router.get("/notification/:userId", getNotificationsByUser);
+// router.put("notification/:notificationId");
 
 export default router;
