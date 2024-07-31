@@ -2,7 +2,7 @@ import { InferSchemaType } from "mongoose";
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  user: String,
+  user: { type: String, required: true },
   date: Date,
   sumTotal: Number,
   deliveryFee: Number,

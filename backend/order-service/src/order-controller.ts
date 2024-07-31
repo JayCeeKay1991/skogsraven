@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { OrderType } from "./order-model";
 import OrderModel from "./order-model";
+import { sendNotificationMessage } from "./events/emitter";
 
 export const createOrder = async (orderData: OrderType) => {
   try {
@@ -8,6 +9,13 @@ export const createOrder = async (orderData: OrderType) => {
       throw new Error("Missing required order fields");
     }
     const newOrder = new OrderModel(orderData);
+    await sendNotificationMessage({
+      userId: newOrder.user,
+      orderId: newOrder._id.toString(),
+      message: "Your order was received.",
+      date: new Date(),
+      status: "unread",
+    });
     return await newOrder.save();
   } catch (error) {
     console.error(
