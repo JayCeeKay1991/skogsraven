@@ -3,7 +3,7 @@ import cors from "cors";
 import router from "./order-router";
 import mongoose from "mongoose";
 import config from "./config/config";
-import connectRabbitMQ from "./events/rabbitmq";
+import { connectRabbitMQ } from "./events/rabbitmq";
 import { consumeOrderMessage } from "./events/consumer";
 
 const port = config.port;
@@ -31,7 +31,7 @@ connectRabbitMQ()
     });
   })
   .catch((err) => {
-    console.error("Failed to initialize RabbitMQ:", err);
+    console.error("Failed to initialize RabbitMQ for orders:", err);
   });
 
 export default mongoose;

@@ -5,7 +5,7 @@ const rabbitMqUrl = config.rabbitMqUrl as string;
 const retryInterval = 5000;
 let channel: Channel;
 
-const connectRabbitMQ = async (): Promise<Channel> => {
+export const connectRabbitMQ = async (): Promise<Channel> => {
   let attempt = 0;
   while (true) {
     try {
@@ -35,5 +35,3 @@ export const assertQueue = async (queueName: string) => {
   const ch = await getChannel();
   await ch.assertQueue(queueName, { durable: true });
 };
-
-export default connectRabbitMQ;

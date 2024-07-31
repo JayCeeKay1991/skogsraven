@@ -36,3 +36,11 @@ export type OrderType = {
   deliveryFee: number;
   status: string;
 };
+
+export type NotificationType = {
+  userId: string;
+  orderId: String;
+  message: string;
+  date: Date;
+  status: String;
+};

@@ -1,5 +1,5 @@
 import express from "express";
-import connectRabbitMQ from "./events/rabbitmq";
+import { connectRabbitMQ } from "./events/rabbitmq";
 
 import cors from "cors";
 import router from "./user-router";

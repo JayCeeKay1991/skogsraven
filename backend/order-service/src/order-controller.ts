@@ -40,8 +40,6 @@ export const updateOrder = async (req: Request, res: Response) => {
         {
           $set: {
             status: orderData.status,
-            deliveryFee: orderData.deliveryFee,
-            sumTotal: orderData.sumTotal,
           },
         },
         { new: true }

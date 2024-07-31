@@ -1,4 +1,4 @@
-import connectRabbitMQ from "./rabbitmq";
+import { connectRabbitMQ } from "./rabbitmq";
 import { createOrder } from "../order-controller";
 
 export const consumeOrderMessage = async () => {
