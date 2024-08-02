@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
           <div>
             <p>© {moment(new Date()).format("yyyy")}</p>
-            <p>All right reserved.</p>
+            <p>All rights reserved.</p>
           </div>
         </div>
         <div id="footer-links">

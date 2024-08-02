@@ -39,7 +39,6 @@ export const NotificationContextProvider = ({
       };
       fetchAndSetNots();
     }
-    console.log("♥️", notifications);
   }, [user]);
 
   return (

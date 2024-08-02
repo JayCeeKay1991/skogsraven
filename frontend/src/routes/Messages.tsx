@@ -1,19 +1,20 @@
 import { useNotificationContext } from "../contexts/NotificationContext";
 import React from "react";
 import moment from "moment";
+import "./Messages.css";
 
 const Messages = () => {
   const { notifications } = useNotificationContext();
 
   return (
     <>
-      <h2>Here are your messages 💌</h2>
-      <div id="message-list-wrap">
+      <div id="messages-wrap">
+        <h2>Here are your messages 💌</h2>
         {notifications && notifications.length ? (
           notifications.map((notification) => {
             return (
-              <div>
-                <p>
+              <div id="message">
+                <p id="message-date">
                   {moment(notification.date).format("ddd, DD/MM/YYYY - HH:mm")}
                 </p>
                 <p>Order: {notification.orderId}</p>
@@ -22,7 +23,7 @@ const Messages = () => {
             );
           })
         ) : (
-          <h2>No notifications for this user.</h2>
+          <p>You don't have any messages yet.</p>
         )}
       </div>
     </>

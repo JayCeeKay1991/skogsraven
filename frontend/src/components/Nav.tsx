@@ -14,6 +14,7 @@ import { initialStateUser } from "../contexts/AuthContext";
 import { logout } from "../services/user-service";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../contexts/CartContext";
+import { useNotificationContext } from "../contexts/NotificationContext";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -21,6 +22,7 @@ const Nav = () => {
 
   const { user, setUser } = useAuthContext();
   const { cart } = useCartContext();
+  const { notifications } = useNotificationContext();
 
   const navigate = useNavigate();
 
@@ -75,6 +77,13 @@ const Nav = () => {
             <button className="transparent-button">
               <BiMessage />
             </button>
+            {notifications.length ? (
+              <div id="notification-badge" className="nav-badge">
+                <h4>{notifications.length}</h4>
+              </div>
+            ) : (
+              <></>
+            )}
           </Link>
           <Link to={"/profile"}>
             <button className="transparent-button">

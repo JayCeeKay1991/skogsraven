@@ -81,6 +81,18 @@ const Cart = () => {
       ) : (
         <></>
       )}
+      {cart.length ? (
+        <div id="sum-total">
+          <p className="third-col">
+            {`${cart.reduce((acc, item) => {
+              return (acc += item.price);
+            }, 0)},00 €`}
+          </p>
+        </div>
+      ) : (
+        <></>
+      )}
+
       <div id="cart-action-buttons">
         <button id="order-button" onClick={handlePlaceOrder}>
           Order now

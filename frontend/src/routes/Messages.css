@@ -1,0 +1,24 @@
+#messages-wrap {
+  width: 50%;
+  margin: 50px;
+  min-height: 300px;
+}
+#messages-wrap h2 {
+  margin-bottom: 40px;
+}
+
+#message {
+  border-bottom: 1px solid var(--theme-dark-green);
+  margin: 10px;
+}
+
+#message-date {
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 30px;
+  background-color: var(--theme-lightgrey);
+  font-size: 12px;
+}

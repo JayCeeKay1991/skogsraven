@@ -69,3 +69,11 @@
   color: var(--theme-dark-green);
   border: 1px solid var(--theme-dark-green);
 }
+
+#sum-total {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 10px;
+  font-weight: bold;
+}
