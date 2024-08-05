@@ -1,7 +1,7 @@
 export type NotificationType = {
   userId: string;
-  orderId: String;
+  orderId: string;
   message: string;
   date: Date;
-  status: String;
+  status: string;
 };

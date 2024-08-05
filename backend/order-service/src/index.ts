@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import config from "./config/config";
 import { connectRabbitMQ } from "./events/rabbitmq";
 import { consumeOrderMessage } from "./events/consumer";
+import updateOrdersJob from "./order-jobs";
 
 const port = config.port;
 const dbUrl = config.dbUrl;
@@ -26,6 +27,7 @@ connectRabbitMQ()
     await mongoose.connect(`${dbUrl}${config.dbNameOrd}`);
     console.log("Order database successfully connected to server 🚀");
     consumeOrderMessage();
+    updateOrdersJob();
     app.listen(port, () => {
       console.log(`Order service listening on port ${port}`);
     });

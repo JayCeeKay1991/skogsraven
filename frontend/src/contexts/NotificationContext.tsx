@@ -39,7 +39,7 @@ export const NotificationContextProvider = ({
       };
       fetchAndSetNots();
     }
-  }, [user]);
+  }, []);
 
   return (
     <NotificationContext.Provider value={{ notifications, setNotifications }}>

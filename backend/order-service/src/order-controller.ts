@@ -38,27 +38,29 @@ export const getOrdersByUser = async (req: Request, res: Response) => {
   }
 };
 
-export const updateOrder = async (req: Request, res: Response) => {
+export const updateOrderStatus = async (
+  orderId: string,
+  status: string
+): Promise<OrderType | null> => {
   try {
-    const orderData = req.body as OrderType;
-    const orderId = req.params.id;
-    if (orderData) {
-      const updatedOrder = OrderModel.findOneAndUpdate(
-        { _id: orderId },
-        {
-          $set: {
-            status: orderData.status,
-          },
-        },
-        { new: true }
-      );
-      res.status(201).send(updatedOrder);
+    const updatedOrder = await OrderModel.findOneAndUpdate(
+      { _id: orderId },
+      { $set: { status: status } },
+      { new: true }
+    );
+    if (updatedOrder) {
+      await sendNotificationMessage({
+        userId: updatedOrder.user,
+        orderId: updatedOrder._id.toString(),
+        message: `Your order status has changed to: ${status}.`,
+        date: new Date(),
+        status: "unread",
+      });
     }
+    return updatedOrder;
   } catch (error) {
-    res.status(500);
-    res.json({
-      error: "An unexpected error occurred while editing the order.",
-    });
+    console.error("Error updating order status:", error);
+    throw error;
   }
 };
 
