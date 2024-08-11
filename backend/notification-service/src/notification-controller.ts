@@ -10,11 +10,9 @@ export const storeNotification = async (notification: NotificationType) => {
 };
 
 export const getNotificationsByUser = async (req: Request, res: Response) => {
-  console.log("Fetching notifications for user:", req.params.userId);
   try {
     const userId = req.params.userId;
     const keys = await redisClient.keys(`notification:${userId}:*`);
-    console.log("Redis keys:", keys);
     const notifications = [];
 
     for (const key of keys) {
@@ -25,11 +23,32 @@ export const getNotificationsByUser = async (req: Request, res: Response) => {
     const dbNotifications = await NotificationModel.find({ userId }).sort({
       date: -1,
     });
-    console.log("Database notifications:", dbNotifications);
 
     res.status(200).json(notifications.concat(dbNotifications));
   } catch (error) {
     console.error("Error fetching notifications:", error);
     res.status(500).json({ error: "Error fetching notifications" });
+  }
+};
+
+export const updateNotification = async (req: Request, res: Response) => {
+  try {
+    const notificationId = req.params.notificationId;
+    const { status } = req.body;
+    console.log("💚", notificationId, status);
+    const updatedNotification = await NotificationModel.findOneAndUpdate(
+      { _id: notificationId },
+      { $set: { status: status } },
+      { new: true }
+    );
+    if (updatedNotification) {
+      res.status(200).json(updatedNotification);
+    } else {
+      res.status(404).json({ error: "Notification not found" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "An unexpected error occurred while updating the notification",
+    });
   }
 };

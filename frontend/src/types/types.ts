@@ -38,6 +38,7 @@ export type OrderType = {
 };
 
 export type NotificationType = {
+  _id?: string;
   userId: string;
   orderId: String;
   message: string;

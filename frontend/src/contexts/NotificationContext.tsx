@@ -38,8 +38,8 @@ export const NotificationContextProvider = ({
         if (notificationsByUser) setNotifications(notificationsByUser);
       };
       fetchAndSetNots();
-    }
-  }, []);
+    } else setNotifications([]);
+  }, [user]);
 
   return (
     <NotificationContext.Provider value={{ notifications, setNotifications }}>

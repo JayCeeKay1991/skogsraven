@@ -79,7 +79,9 @@ const Nav = () => {
             </button>
             {notifications.length ? (
               <div id="notification-badge" className="nav-badge">
-                <h4>{notifications.length}</h4>
+                <h4>
+                  {notifications.filter((not) => not.status !== "read").length}
+                </h4>
               </div>
             ) : (
               <></>
