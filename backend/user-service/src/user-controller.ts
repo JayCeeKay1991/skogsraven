@@ -85,6 +85,33 @@ export const getUserById = async (req: Request, res: Response) => {
   }
 };
 
+export const updateUser = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.userId;
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { _id: userId },
+      {
+        $set: {
+          email: req.body.email,
+          password: req.body.password,
+          shippingAddress: req.body.shippingAddress,
+          billingAddress: req.body.billingAddress,
+        },
+      },
+      { new: true }
+    );
+    if (updatedUser) {
+      res.status(200).json(updatedUser);
+    } else {
+      res.status(404).json({ error: "User could not be updated." });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "An unexpected error occurred while updating the user",
+    });
+  }
+};
+
 // get user profile for the session
 export const profile = async (req: CustomRequest, res: Response) => {
   const user = await UserModel.findById(req.session.uid);

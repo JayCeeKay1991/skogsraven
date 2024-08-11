@@ -7,6 +7,20 @@ export type UserType = {
   _id: string;
   email: string;
   password: string;
+  shippingAddress?: {
+    name: string;
+    street: string;
+    zipCode: string;
+    city: string;
+    country: string;
+  };
+  billingAddress?: {
+    name: string;
+    street: string;
+    zipCode: string;
+    city: string;
+    country: string;
+  };
 };
 
 export type ProductType = {

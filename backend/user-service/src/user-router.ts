@@ -5,6 +5,7 @@ import {
   logout,
   profile,
   getUserById,
+  updateUser,
 } from "./user-controller";
 import {
   getCart,
@@ -19,6 +20,7 @@ const router = express.Router();
 router.post("/user/login", login);
 router.post("/user/signup", createUser);
 router.get("/user/:id", getUserById);
+router.put("/user/:userId", updateUser);
 // session
 router.get("/user/me", authMiddleware, profile);
 router.post("/user/logout", authMiddleware, logout);

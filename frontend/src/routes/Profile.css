@@ -1,0 +1,33 @@
+#profile-wrap {
+  margin: 30px;
+  margin-bottom: 80px;
+  width: 380px;
+}
+
+#profile-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-form input {
+  width: 380px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+  height: 25px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+
+#save-profile-changes-button {
+  border: none;
+  background-color: var(--theme-dark-green);
+  color: var(--theme-white);
+  height: 50px;
+  width: 140px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 30px;
+}

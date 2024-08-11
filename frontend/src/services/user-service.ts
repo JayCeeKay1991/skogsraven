@@ -43,6 +43,12 @@ export const getProfile = async () => {
   }
 };
 
+export const updateProfile = async (body: UserType) => {
+  try {
+    return await apiClient<UserType>(PORT, `user/${body._id}`, "PUT", body);
+  } catch (error) {}
+};
+
 export const logout = async () => {
   try {
     return await apiClient(PORT, "user/logout", "POST");
