@@ -28,7 +28,11 @@ const Messages = () => {
             {notifications && notifications.length ? (
               notifications.map((notification) => {
                 return (
-                  <div key={notification._id} id="message">
+                  <div
+                    key={notification._id}
+                    id="message"
+                    className={notification.status === "unread" ? "unread" : ""}
+                  >
                     <p id="message-date">
                       {moment(notification.date).format(
                         "ddd, DD/MM/YYYY - HH:mm"
@@ -39,11 +43,12 @@ const Messages = () => {
                     <div>
                       {notification.status == "unread" ? (
                         <button
+                          id="read-button"
                           onClick={() =>
                             markAsRead(notification._id!.toString())
                           }
                         >
-                          Mark as read
+                          Read
                         </button>
                       ) : (
                         <></>

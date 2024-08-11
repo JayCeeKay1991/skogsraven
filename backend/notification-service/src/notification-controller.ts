@@ -35,7 +35,6 @@ export const updateNotification = async (req: Request, res: Response) => {
   try {
     const notificationId = req.params.notificationId;
     const { status } = req.body;
-    console.log("💚", notificationId, status);
     const updatedNotification = await NotificationModel.findOneAndUpdate(
       { _id: notificationId },
       { $set: { status: status } },

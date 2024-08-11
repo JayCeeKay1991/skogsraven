@@ -22,3 +22,18 @@
   background-color: var(--theme-lightgrey);
   font-size: 12px;
 }
+
+#read-button {
+  border: none;
+  background-color: var(--theme-dark-green);
+  color: var(--theme-white);
+  width: 68px;
+  height: 28px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.unread {
+  font-weight: bold;
+}
