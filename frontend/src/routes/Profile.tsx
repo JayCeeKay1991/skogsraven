@@ -49,10 +49,24 @@ const Profile = () => {
 
   const changeHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormValuesProfile({ ...formValuesProfile, [name]: value });
+
+    setFormValuesProfile((prevState) => {
+      const [key, subkey] = name.split(".");
+      if (subkey) {
+        return {
+          ...prevState,
+          [key]: {
+            ...(prevState[key as keyof FormValuesProfile] as any),
+            [subkey]: value,
+          },
+        };
+      } else {
+        return { ...prevState, [key]: value };
+      }
+    });
   };
 
-  const submithandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const updatedUserData: UserType = {
@@ -70,7 +84,7 @@ const Profile = () => {
   return (
     <div id="profile-wrap">
       {user && user._id ? (
-        <form id="profile-form" onSubmit={submithandler}>
+        <form id="profile-form" onSubmit={submitHandler}>
           <h3>Personal data 👱</h3>
           <input
             type="email"
@@ -88,31 +102,31 @@ const Profile = () => {
           <h3>Shipping address 📦</h3>
           <input
             type="text"
-            name="shippingName"
+            name="shippingAddress.name"
             value={formValuesProfile.shippingAddress?.name}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="shippingStreet"
+            name="shippingAddress.street"
             value={formValuesProfile.shippingAddress?.street}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="shippingZipCode"
+            name="shippingAddress.zipCode"
             value={formValuesProfile.shippingAddress?.zipCode}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="shippingCity"
+            name="shippingAddress.city"
             value={formValuesProfile.shippingAddress?.city}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="shippingCountry"
+            name="shippingAddress.country"
             value={formValuesProfile.shippingAddress?.country}
             onChange={changeHandler}
           ></input>
@@ -120,31 +134,31 @@ const Profile = () => {
           <h3>Billing address 💰</h3>
           <input
             type="text"
-            name="billingName"
+            name="billingAddress.name"
             value={formValuesProfile.billingAddress?.name}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="billingStreet"
+            name="billingAddress.street"
             value={formValuesProfile.billingAddress?.street}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="billingZipCode"
+            name="billingAddress.zipCode"
             value={formValuesProfile.billingAddress?.zipCode}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="billingCity"
+            name="billingAddress.city"
             value={formValuesProfile.billingAddress?.city}
             onChange={changeHandler}
           ></input>
           <input
             type="text"
-            name="billingCountry"
+            name="billingAddress.country"
             value={formValuesProfile.billingAddress?.country}
             onChange={changeHandler}
           ></input>

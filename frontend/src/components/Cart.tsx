@@ -3,7 +3,11 @@ import { useCartContext } from "../contexts/CartContext";
 import { placeOrder } from "../services/cart-service";
 import "./Cart.css";
 
-const Cart = () => {
+type props = {
+  setShowOrderConfirm: (showOrderConfirm: boolean) => void;
+};
+
+const Cart = ({ setShowOrderConfirm }: props) => {
   const { cart, setCart, removeItem, emptyCart } = useCartContext();
 
   const incrementQuantity = (productId: string) => {
@@ -26,16 +30,16 @@ const Cart = () => {
     );
   };
 
-  const handlePlaceOrder = async () => {
-    try {
-      const response = await placeOrder();
-      if (response.message === "Order placed successfully") {
-        setCart([]); // Clear the cart
-      }
-    } catch (error) {
-      console.error("Failed to place order", error);
-    }
-  };
+  // const handlePlaceOrder = async () => {
+  //   try {
+  //     const response = await placeOrder();
+  //     if (response.message === "Order placed successfully") {
+  //       setCart([]); // Clear the cart
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to place order", error);
+  //   }
+  // };
 
   return (
     <section id="cart-wrap">
@@ -82,25 +86,26 @@ const Cart = () => {
         <></>
       )}
       {cart.length ? (
-        <div id="sum-total">
-          <p className="third-col">
-            {`${cart.reduce((acc, item) => {
-              return (acc += item.price);
-            }, 0)},00 €`}
-          </p>
-        </div>
+        <>
+          <div id="sum-total">
+            <p className="third-col">
+              {`${cart.reduce((acc, item) => {
+                return (acc += item.price * item.quantity);
+              }, 0)},00 €`}
+            </p>
+          </div>
+          <div id="cart-action-buttons">
+            <button id="order-button" onClick={() => setShowOrderConfirm(true)}>
+              Order now
+            </button>
+            <button id="delete-order-button" onClick={emptyCart}>
+              Delete all
+            </button>
+          </div>
+        </>
       ) : (
         <></>
       )}
-
-      <div id="cart-action-buttons">
-        <button id="order-button" onClick={handlePlaceOrder}>
-          Order now
-        </button>
-        <button id="delete-order-button" onClick={emptyCart}>
-          Delete all
-        </button>
-      </div>
     </section>
   );
 };

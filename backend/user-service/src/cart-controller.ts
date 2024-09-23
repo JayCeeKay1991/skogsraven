@@ -38,6 +38,7 @@ export const placeOrder = async (req: CustomRequest, res: Response) => {
   try {
     const cart = req.session.cart;
     const user = req.session.uid;
+    const { billingAddress, shippingAddress } = req.body;
 
     if (!cart) {
       return res.status(400).send("Cart is empty");
@@ -57,6 +58,8 @@ export const placeOrder = async (req: CustomRequest, res: Response) => {
       sumTotal: sumTotal,
       deliveryFee: 4.99,
       status: "Received",
+      shippingAddress: shippingAddress,
+      billingAddress: billingAddress,
     };
 
     await sendOrderMessage(order);

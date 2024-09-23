@@ -8,8 +8,12 @@
 }
 
 #message {
-  border-bottom: 1px solid var(--theme-dark-green);
+  border-radius: 20px;
+  padding: 10px;
+  padding-left: 20px;
   margin: 10px;
+  margin-bottom: 15px;
+  background-color: var(--theme-white);
 }
 
 #message-date {

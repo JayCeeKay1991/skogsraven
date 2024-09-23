@@ -13,4 +13,18 @@ export type OrderType = {
   sumTotal: number;
   deliveryFee: number;
   status: string;
+  shippingAddress: {
+    name: string;
+    street: string;
+    zipCode: string;
+    city: string;
+    country: string;
+  };
+  billingAddress: {
+    name: string;
+    street: string;
+    zipCode: string;
+    city: string;
+    country: string;
+  };
 };

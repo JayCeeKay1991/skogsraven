@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useContext,
 } from "react";
-import { CartItemType } from "@/types/types";
+import { CartItemType } from "../types/types";
 import { getCart, addToCart, removeFromCart } from "../services/cart-service";
 import { useAuthContext } from "./AuthContext";
 

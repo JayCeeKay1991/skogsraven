@@ -15,7 +15,7 @@ body {
   --theme-medium-green: rgb(200, 208, 195);
   --theme-light-green: rgb(190, 196, 185);
   --theme-light-green-50: rgba(213, 233, 209, 0.5);
-  --theme-white: rgb(235, 228, 221);
+  --theme-white: rgb(244, 244, 244);
   --theme-lightgrey: lightgrey;
   background-color: var(--theme-white);
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",

@@ -15,6 +15,20 @@ const orderSchema = new mongoose.Schema({
       price: Number,
     },
   ],
+  shippingAddress: {
+    name: String,
+    street: String,
+    zipCode: String,
+    city: String,
+    country: String,
+  },
+  billingAddress: {
+    name: String,
+    street: String,
+    zipCode: String,
+    city: String,
+    country: String,
+  },
 });
 
 export type OrderType = InferSchemaType<typeof orderSchema>;

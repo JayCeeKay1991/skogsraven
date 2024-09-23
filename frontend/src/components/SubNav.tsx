@@ -14,7 +14,11 @@ const SubNav = () => {
       </div>
       <p>
         {user._id
-          ? `Welcome back, ${user.email}!` // prettify this
+          ? `Welcome back, ${
+              user.billingAddress?.name ||
+              user.shippingAddress?.name ||
+              user.email
+            }!`
           : "Sign up this week and get 15% off your first order!"}
       </p>
       <div id="subnav-links">

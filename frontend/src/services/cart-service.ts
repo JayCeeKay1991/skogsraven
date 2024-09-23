@@ -1,4 +1,4 @@
-import { CartItemType } from "../types/types";
+import { CartItemType, OrderType } from "../types/types";
 import { apiClient } from "./api-client";
 
 const PORT = import.meta.env.PORT_US || 3001;
@@ -33,6 +33,13 @@ export const removeFromCart = async (
   });
 };
 
-export const placeOrder = async (): Promise<{ message: string }> => {
-  return await apiClient<{ message: string }>(PORT, "order", "POST");
+export const placeOrder = async (
+  addressData: Partial<OrderType>
+): Promise<{ message: string }> => {
+  return await apiClient<{ message: string }>(
+    PORT,
+    "order",
+    "POST",
+    addressData
+  );
 };

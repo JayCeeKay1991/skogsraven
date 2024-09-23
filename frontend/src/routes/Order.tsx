@@ -5,10 +5,12 @@ import { useAuthContext } from "../contexts/AuthContext";
 import { getOrdersByUser } from "../services/order-service";
 import { OrderType } from "../types/types";
 import "./Order.css";
+import OrderConfirm from "../components/OrderConfirm";
 
 const Order = () => {
   const [orderList, setOrderList] = useState<OrderType[]>([]);
   const { user } = useAuthContext();
+  const [showOrderConfirm, setShowOrderConfirm] = useState(false);
 
   useEffect(() => {
     const fetchAndSet = async () => {
@@ -27,7 +29,11 @@ const Order = () => {
 
   return (
     <section id="order-wrap">
-      <Cart></Cart>
+      {showOrderConfirm ? (
+        <OrderConfirm setShowOrderConfirm={setShowOrderConfirm}></OrderConfirm>
+      ) : (
+        <Cart setShowOrderConfirm={setShowOrderConfirm}></Cart>
+      )}
       <PastOrders orderList={orderList}></PastOrders>
     </section>
   );
