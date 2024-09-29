@@ -1,5 +1,5 @@
 import { getChannel } from "./rabbitmq";
-import { NotificationType } from "../types";
+import { NotificationType, ProductMessageType } from "../types";
 
 export const sendNotificationMessage = async (
   notification: NotificationType
@@ -17,5 +17,24 @@ export const sendNotificationMessage = async (
     console.log("Notification message sent");
   } catch (error) {
     console.error("Failed to send notification message:", error);
+  }
+};
+
+export const sendProductMessage = async (
+  productMessage: ProductMessageType
+) => {
+  const channel = await getChannel();
+  try {
+    await channel.assertQueue("productQueue", { durable: true });
+    channel.sendToQueue(
+      "productQueue",
+      Buffer.from(JSON.stringify(productMessage)),
+      {
+        persistent: true,
+      }
+    );
+    console.log("Product message sent");
+  } catch (error) {
+    console.error("Failed to send product message:", error);
   }
 };

@@ -6,7 +6,6 @@ export const consumeOrderMessage = async () => {
   try {
     await channel.assertQueue("notificationQueue", { durable: true });
     channel.consume("notificationQueue", async (msg) => {
-      console.log("💚", msg);
       if (msg !== null) {
         const notification = JSON.parse(msg.content.toString());
         await storeNotification(notification);

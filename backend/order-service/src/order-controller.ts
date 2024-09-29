@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { OrderType } from "./order-model";
 import OrderModel from "./order-model";
-import { sendNotificationMessage } from "./events/emitter";
+import { sendNotificationMessage, sendProductMessage } from "./events/emitter";
 
 export const createOrder = async (orderData: OrderType) => {
   try {
@@ -16,6 +16,18 @@ export const createOrder = async (orderData: OrderType) => {
       date: new Date(),
       status: "unread",
     });
+    // update the stock in the product service
+    const products = orderData.products;
+
+    for (const product of products) {
+      if (product.productId && product.quantity) {
+        await sendProductMessage({
+          productId: product.productId,
+          quantity: product.quantity,
+        });
+      }
+    }
+
     return await newOrder.save();
   } catch (error) {
     console.error(

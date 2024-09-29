@@ -5,3 +5,8 @@ export type NotificationType = {
   date: Date;
   status: string;
 };
+
+export type ProductMessageType = {
+  productId: string;
+  quantity: number;
+};

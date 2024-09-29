@@ -30,17 +30,6 @@ const Cart = ({ setShowOrderConfirm }: props) => {
     );
   };
 
-  // const handlePlaceOrder = async () => {
-  //   try {
-  //     const response = await placeOrder();
-  //     if (response.message === "Order placed successfully") {
-  //       setCart([]); // Clear the cart
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to place order", error);
-  //   }
-  // };
-
   return (
     <section id="cart-wrap">
       <h2>Here's what's in your cart 🛒</h2>

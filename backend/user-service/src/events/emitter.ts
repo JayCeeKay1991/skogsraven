@@ -4,7 +4,6 @@ import { OrderType } from "../types";
 export const sendOrderMessage = async (order: OrderType) => {
   const channel = await getChannel();
   try {
-    // Example of asserting a queue
     await channel.assertQueue("orderQueue", { durable: true });
     channel.sendToQueue("orderQueue", Buffer.from(JSON.stringify(order)), {
       persistent: true,

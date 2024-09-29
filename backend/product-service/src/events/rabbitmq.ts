@@ -11,12 +11,12 @@ export const connectRabbitMQ = async (): Promise<Channel> => {
     try {
       const connection = await amqp.connect(rabbitMqUrl);
       channel = await connection.createChannel();
-      console.log("Connected Order Service to RabbitMQ");
+      console.log("Connected Product Service to RabbitMQ");
       return channel;
     } catch (err) {
       attempt++;
       console.error(
-        `Failed to connect order service to RabbitMQ (attempt ${attempt}):`,
+        `Failed to connect product service to RabbitMQ (attempt ${attempt}):`,
         err
       );
       await new Promise((resolve) => setTimeout(resolve, retryInterval));

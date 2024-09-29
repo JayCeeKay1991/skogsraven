@@ -28,6 +28,23 @@ export const getProducts = async (req: Request, res: Response) => {
   }
 };
 
+export const updateStock = async (stockUpdate: {
+  productId: string;
+  quantity: number;
+}): Promise<ProductType | null> => {
+  try {
+    const updatedProduct = await ProductModel.findOneAndUpdate(
+      { _id: stockUpdate.productId },
+      { $inc: { numAvailable: -stockUpdate.quantity } },
+      { new: true }
+    );
+    return updatedProduct;
+  } catch (error) {
+    console.error("Error updating product stock:", error);
+    throw error;
+  }
+};
+
 export const deleteProduct = async (productId: string) => {
   try {
     const deletedProduct = await ProductModel.findOneAndDelete({

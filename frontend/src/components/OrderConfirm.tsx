@@ -27,7 +27,7 @@ type props = {
 };
 
 const OrderConfirm = ({ setShowOrderConfirm }: props) => {
-  const { cart, setCart } = useCartContext();
+  const { setCart } = useCartContext();
   const { user } = useAuthContext();
 
   const initialFormState = {
