@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: category-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: category-service
+  template:
+    metadata:
+      labels:
+        app: category-service
+    spec:
+      containers:
+        - name: category-service
+          image: category-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3005
+          env:
+            - name: RABBITMQ_URL
+              valueFrom:
+              configMapKeyRef:
+                name: app-config
+                key: RABBITMQ_URL
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MONGO_URL_CAT
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: category-service
+spec:
+  selector:
+    app: category-service
+  ports:
+    - protocol: TCP
+      port: 3005
+      targetPort: 3005
+  type: ClusterIP

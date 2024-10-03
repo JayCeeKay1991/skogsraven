@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  RABBITMQ_URL: amqp://rabbitmq-service:5672
+  MONGO_URL: mongodb://mongo-service:27017/
+  MONGO_URL_US: mongodb://mongo-service:27017/users
+  MONGO_URL_ORD: mongodb://mongo-service:27017/orders
+  MONGO_URL_CAT: mongodb://mongo-service:27017/categories
+  MONGO_URL_PRO: mongodb://mongo-service:27017/products
+  MONGO_URL_NOT: mongodb://mongo-service:27017/notifications
