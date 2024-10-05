@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
         - name: category-service
-          image: category-service:latest
+          image: eshop-category-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3005
           env:
             - name: RABBITMQ_URL
               valueFrom:
-              configMapKeyRef:
-                name: app-config
-                key: RABBITMQ_URL
+                configMapKeyRef:
+                  name: app-config
+                  key: RABBITMQ_URL
             - name: MONGO_URL
               valueFrom:
                 configMapKeyRef:

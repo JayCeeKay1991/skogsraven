@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
         - name: notification-service
-          image: notification-service:latest
+          image: eshop-notification-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3004
           env:
             - name: RABBITMQ_URL
               valueFrom:
-              configMapKeyRef:
-                name: app-config
-                key: RABBITMQ_URL
+                configMapKeyRef:
+                  name: app-config
+                  key: RABBITMQ_URL
             - name: MONGO_URL
               valueFrom:
                 configMapKeyRef:

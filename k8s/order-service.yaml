@@ -14,16 +14,16 @@ spec:
     spec:
       containers:
         - name: order-service
-          image: order-service:latest
+          image: eshop-order-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3003
           env:
             - name: RABBITMQ_URL
               valueFrom:
-              configMapKeyRef:
-                name: app-config
-                key: RABBITMQ_URL
+                configMapKeyRef:
+                  name: app-config
+                  key: RABBITMQ_URL
             - name: MONGO_URL
               valueFrom:
                 configMapKeyRef:
