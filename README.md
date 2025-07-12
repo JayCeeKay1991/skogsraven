@@ -33,7 +33,9 @@ The application will be available at:
 - RabbitMQ Management: http://localhost:15673
 - MongoDB: http://localhost:27018
 
-To stop all services, run `docker-compose down`
+Seed initial data for categories, products and a user with `cd backend/common && npm run seed`. You can then log in using the credentials: username `jay@skogsraven.com`, password: `pw`.
+
+To stop all services, run `docker-compose down`.
 
 ### Frontend only
 
