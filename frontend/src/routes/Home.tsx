@@ -12,8 +12,7 @@ const Home = () => {
     const fetchAndSet = async () => {
       try {
         const allCategories = await getCategories();
-        if (allCategories.length) setCategoryList(allCategories);
-        else console.log("No categories.");
+        setCategoryList(allCategories);
       } catch (error) {
         console.error("Error getting all categories.");
       }

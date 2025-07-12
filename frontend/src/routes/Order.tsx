@@ -15,17 +15,15 @@ const Order = () => {
   useEffect(() => {
     const fetchAndSet = async () => {
       try {
-        if (!user) console.log("No logged in user.");
         const ordersByUser = await getOrdersByUser(user._id);
 
         if (ordersByUser && ordersByUser.length) setOrderList(ordersByUser);
-        console.log("No orders found for this user.");
       } catch (error) {
         console.error(error);
       }
     };
     fetchAndSet();
-  }, []);
+  }, [user]);
 
   return (
     <section id="order-wrap">

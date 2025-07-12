@@ -5,15 +5,20 @@ import "./ProductList.css";
 
 type ProductListProp = {
   productList: ProductType[];
+  categoryName: string;
 };
 
-const ProductList = ({ productList }: ProductListProp) => {
+const ProductList = ({ productList, categoryName }: ProductListProp) => {
   return (
     <div id="product-list-wrap">
       {productList.length ? (
         productList.map((product) => {
           return (
-            <ProductItem product={product} key={product._id}></ProductItem>
+            <ProductItem
+              product={product}
+              categoryName={categoryName}
+              key={product._id}
+            ></ProductItem>
           );
         })
       ) : (

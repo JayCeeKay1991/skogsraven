@@ -5,23 +5,53 @@ import { useCartContext } from "../contexts/CartContext";
 
 type ProductItemProp = {
   product: ProductType;
+  categoryName: string;
 };
 
-const ProductItem = ({ product }: ProductItemProp) => {
+const ProductItem = ({ product, categoryName }: ProductItemProp) => {
   const { cart, addItem } = useCartContext();
+
+  let mockImage;
+  switch (categoryName) {
+    case "Cooking":
+      mockImage = "/mock_cooking.png";
+      break;
+    case "Clothing":
+      mockImage = "/mock_clothes.png";
+      break;
+    case "Tents":
+      mockImage = "/mock_tent.png";
+      break;
+    case "Sleeping bags":
+      mockImage = "/mock_sleepingbag.png";
+      break;
+    case "Climbing gear":
+      mockImage = "/mock_climbing.png";
+      break;
+    case "Vanlife":
+      mockImage = "/mock_vanlife.png";
+      break;
+    case "Wintersports":
+      mockImage = "/mock_winter.png";
+      break;
+    case "Other":
+      mockImage = "/mock_other.png";
+      break;
+    default:
+      mockImage = "";
+  }
 
   const handleAddToCart = () => {
     addItem(product._id, product.name, 1, product.price);
-    console.log("Cart:", cart);
   };
 
   return (
     <div id="product-item-wrap">
-      <img src={product.picture}></img>
+      <img src={product.picture || mockImage} alt={product.name}></img>
       <div id="product-item-text">
         <h2>{product.name}</h2>
         <p>{product.shortDescription}</p>
-        <h3>{product.price}.00 €</h3>
+        <h3>{product.price.toFixed(2)} €</h3>
         {product.numAvailable > 0 ? (
           <button id="cart-button" onClick={handleAddToCart}>
             Add to cart

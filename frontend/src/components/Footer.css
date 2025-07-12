@@ -1,7 +1,7 @@
 #footer-wrap {
   background-color: var(--theme-dark-brown);
   color: var(--theme-white);
-  height: 260px;
+  height: 200px;
   width: 100%;
   position: static;
   bottom: 0;
@@ -21,7 +21,7 @@
 }
 
 #footer-columns {
-  margin: 50px;
+  margin: 2rem;
   display: flex;
   gap: 50px;
   align-items: center;

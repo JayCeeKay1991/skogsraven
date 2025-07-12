@@ -37,7 +37,6 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
         // get user profile if there is a session
         const userProfile = await getProfile();
         setUser(userProfile);
-        console.log("💚", user);
       } catch (error) {
         console.error("No user logged in.");
       }

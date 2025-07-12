@@ -6,7 +6,6 @@ const PORT = import.meta.env.PORT_US || 3001;
 export const signup = async (body: Omit<UserType, "_id">) => {
   try {
     const user = await apiClient<UserType>(PORT, "user/signup", "POST", body);
-    console.log({ user });
     return user;
   } catch (error) {
     console.error(error);
@@ -35,7 +34,6 @@ export const getUserById = async (id: string) => {
 // Get profile from the session
 export const getProfile = async () => {
   try {
-    console.log("Here!");
     return await apiClient<UserType>(PORT, "user/me");
   } catch (error) {
     console.error(error);

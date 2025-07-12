@@ -62,7 +62,7 @@ const Messages = () => {
             )}
           </>
         ) : (
-          <h2>Log in to see your messages 💌</h2>
+          <h3>Log in to see your messages 💌</h3>
         )}
       </div>
     </>

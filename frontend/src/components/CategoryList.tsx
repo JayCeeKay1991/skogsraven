@@ -19,11 +19,10 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
     const fetchProductsByCategory = async (selectedCategory: CategoryType) => {
       try {
         const allProducts = await getProducts();
-        if (allProducts.length)
-          setProductList(
-            allProducts.filter((prod) => prod.category === selectedCategory._id)
-          );
-        else console.log("No products.");
+
+        setProductList(
+          allProducts.filter((prod) => prod.category === selectedCategory._id)
+        );
       } catch (error) {
         console.error("Error getting all products.");
       }
@@ -51,7 +50,10 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
         )}
       </div>
       {selectedCategory && productList.length ? (
-        <ProductList productList={productList}></ProductList>
+        <ProductList
+          productList={productList}
+          categoryName={selectedCategory.name}
+        ></ProductList>
       ) : selectedCategory && !productList.length ? (
         <p>No products for this category.</p>
       ) : (

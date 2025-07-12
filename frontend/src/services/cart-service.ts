@@ -36,7 +36,6 @@ export const removeFromCart = async (
 export const placeOrder = async (
   addressData: Partial<OrderType>
 ): Promise<{ message: string }> => {
-  console.log("😱", addressData);
   return await apiClient<{ message: string }>(
     PORT,
     "order",
