@@ -3,6 +3,13 @@
   margin: 50px;
   background-color: var(--theme-lightgrey);
 }
+#past-orders-box h3 {
+  margin: 0;
+}
+
+#past-orders-box {
+  padding: 10px;
+}
 
 #past-order-item {
   border: 1px solid var(--theme-dark-green);

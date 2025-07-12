@@ -32,14 +32,12 @@ const Cart = ({ setShowOrderConfirm }: props) => {
 
   return (
     <section id="cart-wrap">
-      <h2>Here's what's in your cart 🛒</h2>
       <div id="cart-header">
         <h3 className="first-col">Quantity</h3>
         <h3 className="second-col">Item</h3>
         <h3 className="third-col">Price</h3>
         <h3 className="fourth-col">Remove</h3>
       </div>
-
       {cart.length ? (
         cart.map((item) => (
           <div id="item-details" key={item.productId}>
@@ -72,7 +70,7 @@ const Cart = ({ setShowOrderConfirm }: props) => {
           </div>
         ))
       ) : (
-        <></>
+        <p>Ad something to the cart to see the details of your items.</p>
       )}
       {cart.length ? (
         <>

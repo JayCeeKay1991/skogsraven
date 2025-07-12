@@ -31,7 +31,7 @@ The application will be available at:
 
 - Frontend: http://localhost:4173
 - RabbitMQ Management: http://localhost:15673
-- MongoDB: http://localhost:27017
+- MongoDB: http://localhost:27018
 
 To stop all services, run `docker-compose down`
 
@@ -46,7 +46,7 @@ To stop all services, run `docker-compose down`
 2. run `npm start` for each of the services you want to run respectively
 3. run `docker run -d --name rabbitmq -p 5673:5672 -p 15673:15672 rabbitmq:3-management` to start RabbitMQ
 4. run `docker run -d --name redis -p 6380:6379 redis:latest` to start redis
-5. run `docker run -d --name mongodb -p 27017:27017 -v mongodb_data:/data/db mongo:latest` to start MongoDB
+5. run `docker run -d --name mongodb -p 27018:27017 -v mongodb_data:/data/db mongo:latest` to start MongoDB
 
 ### Service Ports
 
@@ -58,4 +58,4 @@ To stop all services, run `docker-compose down`
 - Category Service: 3005
 - RabbitMQ: 5673 (AMQP), 15673 (Management UI)
 - Redis: 6380
-- MongoDB: 27017
+- MongoDB: 27018

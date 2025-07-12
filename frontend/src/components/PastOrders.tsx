@@ -14,8 +14,8 @@ const PastOrders = ({ orderList }: PastOrdersPropsType) => {
   return (
     <div id="past-orders-wrap">
       {user._id ? (
-        <>
-          <h3>Here are your past orders ⌛️</h3>
+        <div id="past-orders-box">
+          <h3>Your past orders</h3>
           {orderList && orderList.length ? (
             orderList.map((order) => {
               return (
@@ -30,9 +30,9 @@ const PastOrders = ({ orderList }: PastOrdersPropsType) => {
               );
             })
           ) : (
-            <p>No orders for this user.</p>
+            <p>No orders found.</p>
           )}
-        </>
+        </div>
       ) : (
         <h3>Log in to see your past orders ⌛️</h3>
       )}

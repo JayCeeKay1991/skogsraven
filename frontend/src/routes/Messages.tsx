@@ -24,7 +24,7 @@ const Messages = () => {
       <div id="messages-wrap">
         {user._id ? (
           <>
-            <h2>Here are your messages 💌</h2>
+            <h3>Your Inbox</h3>
             {notifications && notifications.length ? (
               notifications.map((notification) => {
                 return (
