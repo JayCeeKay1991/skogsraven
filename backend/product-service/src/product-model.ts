@@ -1,7 +1,7 @@
 import { InferSchemaType } from "mongoose";
 import mongoose from "mongoose";
 
-const productSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
   name: { type: String, required: true },
   category: {
     type: mongoose.Schema.Types.ObjectId,
@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
   numAvailable: Number,
 });
 
-export type ProductType = InferSchemaType<typeof productSchema>;
+export type ProductType = InferSchemaType<typeof ProductSchema>;
 
-const ProductModel = mongoose.model("Product", productSchema);
+const ProductModel = mongoose.model("Product", ProductSchema);
 export default ProductModel;
