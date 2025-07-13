@@ -47,7 +47,11 @@ const ProductItem = ({ product, categoryName }: ProductItemProp) => {
 
   return (
     <div id="product-item-wrap">
-      <img src={product.picture || mockImage} alt={product.name}></img>
+      <img
+        className={product.numAvailable ? "" : "sold-out"}
+        src={product.picture || mockImage}
+        alt={product.name}
+      ></img>
       <div id="product-item-text">
         <h2>{product.name}</h2>
         <p>{product.shortDescription}</p>
