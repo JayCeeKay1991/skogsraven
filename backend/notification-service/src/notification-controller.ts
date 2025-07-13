@@ -2,6 +2,7 @@ import redisClient from "./redis-client";
 import NotificationModel, { NotificationType } from "./notification-model";
 import { Request, Response } from "express";
 
+// storing in redis temporarily and in mongodb
 export const storeNotification = async (notification: NotificationType) => {
   const key = `notification:${notification.userId}:${notification.orderId}`;
   await redisClient.setEx(key, 3600, JSON.stringify(notification)); // 1 hour
@@ -31,6 +32,7 @@ export const getNotificationsByUser = async (req: Request, res: Response) => {
   }
 };
 
+// mark as read
 export const updateNotification = async (req: Request, res: Response) => {
   try {
     const notificationId = req.params.notificationId;
