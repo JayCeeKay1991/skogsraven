@@ -12,6 +12,7 @@ import { getProfile } from "../services/user-service";
 
 type AuthContextType = {
   user: UserType;
+
   setUser: Dispatch<SetStateAction<UserType>>;
 };
 
@@ -34,11 +35,10 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const checkLoggedIn = async () => {
       try {
-        // get user profile if there is a session
         const userProfile = await getProfile();
         setUser(userProfile);
-      } catch (error) {
-        console.error("No user logged in.");
+      } catch (err) {
+        alert(err);
       }
       checkLoggedIn();
     };

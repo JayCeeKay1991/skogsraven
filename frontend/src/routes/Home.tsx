@@ -7,14 +7,19 @@ import Hero from "../components/Hero";
 
 const Home = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchAndSet = async () => {
       try {
         const allCategories = await getCategories();
         setCategoryList(allCategories);
-      } catch (error) {
-        console.error("Error getting all categories.");
+      } catch (err) {
+        const errorMessage =
+        err instanceof Error
+        ? err.message
+        : "An unknown error occurred. Sorry!";
+        setError(errorMessage);
       }
     };
     fetchAndSet();
@@ -23,7 +28,11 @@ const Home = () => {
   return (
     <>
       <Hero></Hero>
-      <CategoryList categoryList={categoryList}></CategoryList>
+      {error ? (
+        <p>{error}</p>
+      ) : (
+        <CategoryList categoryList={categoryList}></CategoryList>
+      )}
     </>
   );
 };

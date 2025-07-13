@@ -1,5 +1,5 @@
 import { useNotificationContext } from "../contexts/NotificationContext";
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import "./Messages.css";
 import { useAuthContext } from "../contexts/AuthContext";
@@ -8,15 +8,22 @@ import { readNotification } from "../services/notification-service";
 const Messages = () => {
   const { notifications, setNotifications } = useNotificationContext();
   const { user } = useAuthContext();
+  const [error, setError] = useState("");
 
   const markAsRead = async (notificationId: string) => {
-    await readNotification(notificationId);
+    try {
+      await readNotification(notificationId);
 
-    setNotifications((prevList) =>
-      prevList.map((not) =>
-        not._id === notificationId ? { ...not, status: "read" } : not
-      )
-    );
+      setNotifications((prevList) =>
+        prevList.map((not) =>
+          not._id === notificationId ? { ...not, status: "read" } : not
+        )
+      );
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "An unknown error occured.";
+      setError(errorMessage);
+    }
   };
 
   return (
@@ -62,7 +69,7 @@ const Messages = () => {
             )}
           </>
         ) : (
-          <h3>Log in to see your messages 💌</h3>
+          <h3>Log in to see your messages.</h3>
         )}
       </div>
     </>

@@ -11,18 +11,25 @@ const Order = () => {
   const [orderList, setOrderList] = useState<OrderType[]>([]);
   const { user } = useAuthContext();
   const [showOrderConfirm, setShowOrderConfirm] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchAndSet = async () => {
-      try {
-        const ordersByUser = await getOrdersByUser(user._id);
+    if (user._id) {
+      const fetchAndSet = async () => {
+        try {
+          const ordersByUser = await getOrdersByUser(user._id);
 
-        if (ordersByUser && ordersByUser.length) setOrderList(ordersByUser);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchAndSet();
+          if (ordersByUser && ordersByUser.length) setOrderList(ordersByUser);
+        } catch (err) {
+          const errorMessage =
+            err instanceof Error
+              ? err.message
+              : "An unknown error occurred. Sorry!";
+          setError(errorMessage);
+        }
+      };
+      fetchAndSet();
+    }
   }, [user]);
 
   return (
@@ -32,7 +39,7 @@ const Order = () => {
       ) : (
         <Cart setShowOrderConfirm={setShowOrderConfirm}></Cart>
       )}
-      <PastOrders orderList={orderList}></PastOrders>
+      <PastOrders orderList={orderList} error={error}></PastOrders>
     </section>
   );
 };

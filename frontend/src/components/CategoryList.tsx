@@ -14,6 +14,7 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
     null
   );
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchProductsByCategory = async (selectedCategory: CategoryType) => {
@@ -23,8 +24,12 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
         setProductList(
           allProducts.filter((prod) => prod.category === selectedCategory._id)
         );
-      } catch (error) {
-        console.error("Error getting all products.");
+      } catch (err) {
+        const errorMessage =
+          err instanceof Error
+            ? err.message
+            : "An unknown error occurred. Sorry!";
+        setError(errorMessage);
       }
     };
     if (selectedCategory) fetchProductsByCategory(selectedCategory);
@@ -49,7 +54,9 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
           <h2>An error occured when loading the categories.</h2>
         )}
       </div>
-      {selectedCategory && productList.length ? (
+      {error ? (
+        <p>{error}</p>
+      ) : selectedCategory && productList.length ? (
         <ProductList
           productList={productList}
           categoryName={selectedCategory.name}

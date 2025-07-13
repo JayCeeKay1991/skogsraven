@@ -4,53 +4,27 @@ const PORT = import.meta.env.PORT_US || 3001;
 
 // Sign up new user
 export const signup = async (body: Omit<UserType, "_id">) => {
-  try {
-    const user = await apiClient<UserType>(PORT, "user/signup", "POST", body);
-    return user;
-  } catch (error) {
-    console.error(error);
-  }
+  return await apiClient<UserType>(PORT, "user/signup", "POST", body);
 };
 
 // log in existing user
 export const login = async (body: Omit<UserType, "_id">) => {
-  try {
-    const user = await apiClient<UserType>(PORT, "user/login", "POST", body);
-    return user;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  return await apiClient<UserType>(PORT, "user/login", "POST", body);
 };
 
 export const getUserById = async (id: string) => {
-  try {
-    return await apiClient<UserType>(PORT, `user/${id}`);
-  } catch (error) {
-    console.error(error);
-  }
+  return await apiClient<UserType>(PORT, `user/${id}`);
 };
 
 // Get profile from the session
 export const getProfile = async () => {
-  try {
-    return await apiClient<UserType>(PORT, "user/me");
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
+  return await apiClient<UserType>(PORT, "user/me");
 };
 
 export const updateProfile = async (body: UserType) => {
-  try {
-    return await apiClient<UserType>(PORT, `user/${body._id}`, "PUT", body);
-  } catch (error) {}
+  return await apiClient<UserType>(PORT, `user/${body._id}`, "PUT", body);
 };
 
 export const logout = async () => {
-  try {
-    return await apiClient(PORT, "user/logout", "POST");
-  } catch (error) {
-    console.error(error);
-  }
+  return await apiClient(PORT, "user/logout", "POST");
 };

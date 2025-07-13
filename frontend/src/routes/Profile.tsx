@@ -6,7 +6,7 @@ import { updateProfile } from "../services/user-service";
 
 type FormValuesProfile = {
   email: string;
-  password: string;
+
   shippingAddress?: {
     name: string;
     street: string;
@@ -25,9 +25,11 @@ type FormValuesProfile = {
 
 const Profile = () => {
   const { user, setUser } = useAuthContext();
+  const [error, setError] = useState("");
+
   const initialFormState = {
     email: user.email,
-    password: user.password,
+
     shippingAddress: {
       name: user.shippingAddress?.name || "",
       street: user.shippingAddress?.street || "",
@@ -69,33 +71,38 @@ const Profile = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const updatedUserData: UserType = {
-      _id: user._id,
-      email: formValuesProfile.email,
-      password: formValuesProfile.password,
-      shippingAddress: formValuesProfile.shippingAddress,
-      billingAddress: formValuesProfile.billingAddress,
-    };
+    try {
+      const updatedUserData: UserType = {
+        _id: user._id,
+        email: formValuesProfile.email,
+        password: user.password,
+        shippingAddress: formValuesProfile.shippingAddress,
+        billingAddress: formValuesProfile.billingAddress,
+      };
 
-    const updatedUser = await updateProfile(updatedUserData);
-    if (updatedUser) setUser(updatedUser);
+      const updatedUser = await updateProfile(updatedUserData);
+      if (updatedUser) setUser(updatedUser);
+      alert("Profile updated!");
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "An unknown error occurred. Sorry!";
+      setError(errorMessage);
+    }
   };
 
   return (
     <div id="profile-wrap">
-      {user && user._id ? (
+      {error ? (
+        <>{error}</>
+      ) : user && user._id ? (
         <form id="profile-form" onSubmit={submitHandler}>
           <h3>Personal data 👱</h3>
           <input
             type="email"
             name="email"
             value={formValuesProfile.email}
-            onChange={changeHandler}
-          ></input>
-          <input
-            type="password"
-            name="password"
-            value={formValuesProfile.password}
             onChange={changeHandler}
           ></input>
 
@@ -168,7 +175,7 @@ const Profile = () => {
           </button>
         </form>
       ) : (
-        <h2>Log in to see your user data 👱</h2>
+        <h3>Log in to see your user data.</h3>
       )}
     </div>
   );

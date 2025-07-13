@@ -20,5 +20,8 @@ export async function apiClient<T>(
   if (response.ok) {
     return response.json();
   }
-  return Promise.reject(new Error("Something went wrong in the API client."));
+  throw new Error(
+    `We're having trouble connecting to the ${endpoint} endpoint. Sorry!`
+  );
+  console.log(response);
 }

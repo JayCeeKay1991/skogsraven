@@ -20,6 +20,7 @@ type LoginSignupProps = {
 const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
   const [formType, setFormType] = useState("login");
   const [formState, setFormState] = useState<FormValues>(initialFormState);
+  const [error, setError] = useState("");
   const { setUser } = useAuthContext();
 
   // handler functions
@@ -29,25 +30,33 @@ const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
   }
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { email, password } = formState;
-    const loginData = { email, password };
-    const loggedinUser = await login(loginData);
-    setFormState(initialFormState);
-    setShowLoginForm(false);
-    setUser(loggedinUser);
-    // else setFailedToLogin(true);
+    try {
+      e.preventDefault();
+      const { email, password } = formState;
+      const loginData = { email, password };
+      const loggedinUser = await login(loginData);
+      setFormState(initialFormState);
+      setShowLoginForm(false);
+      setUser(loggedinUser);
+    } catch (err) {
+      console.error(err);
+      setError("✖️ Could not login.");
+    }
   };
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { email, password } = formState;
-    const signupData = { email, password };
-    const newUser = await signup(signupData);
-    setFormState(initialFormState);
-    setShowLoginForm(false);
-    if (newUser) setUser(newUser);
-    // else setFailedToLogin(true);
+    try {
+      e.preventDefault();
+      const { email, password } = formState;
+      const signupData = { email, password };
+      const newUser = await signup(signupData);
+      setFormState(initialFormState);
+      setShowLoginForm(false);
+      if (newUser) setUser(newUser);
+    } catch (err) {
+      console.error(err);
+      setError("✖️ Could not sign up.");
+    }
   };
 
   return (
@@ -79,7 +88,11 @@ const LoginSignup = ({ setShowLoginForm }: LoginSignupProps) => {
         className="transparent-button"
         onClick={() => setFormType(formType === "login" ? "signup" : "login")}
       >
-        {formType === "login" ? "...or create account" : "back to login"}
+        {error
+          ? error
+          : formType === "login"
+          ? "...or create account"
+          : "back to login"}
       </button>
     </div>
   );

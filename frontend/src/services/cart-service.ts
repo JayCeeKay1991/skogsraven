@@ -4,11 +4,7 @@ import { apiClient } from "./api-client";
 const PORT = import.meta.env.PORT_US || 3001;
 
 export const getCart = async () => {
-  try {
-    return await apiClient<CartItemType[]>(PORT, "user/cart");
-  } catch (error) {
-    console.error(error);
-  }
+  return await apiClient<CartItemType[]>(PORT, "user/cart");
 };
 
 export const addToCart = async (
