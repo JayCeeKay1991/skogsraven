@@ -4,7 +4,7 @@
   height: 60px;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 1rem;
   padding: 15px;
   align-items: center;
   justify-content: space-between;
@@ -15,7 +15,7 @@
 }
 
 #logo-wrap {
-  width: 300px;
+  width: fit-content;
   display: flex;
   gap: 10px;
   color: var(--theme-light-brown);
@@ -25,55 +25,6 @@
 
 #nav-logo {
   height: 50px;
-}
-
-#user-buttons {
-  background-color: var(--theme-dark-green);
-  color: var(--theme-white);
-  border-radius: 10px;
-  display: flex;
-  gap: 15px;
-  width: 200px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-#user-buttons button {
-  padding-top: 10px;
-  font-size: 30px;
-  color: var(--theme-white);
-}
-
-#search input {
-  height: 40px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  width: 250px;
-  border: none;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-#search button {
-  background-color: var(--theme-lightgrey);
-  outline: none;
-  border: none;
-  height: 42px;
-  width: 45px;
-  font-size: 30px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  color: var(--theme-dark-green);
-}
-
-#search {
-  display: flex;
-  align-items: center;
-}
-
-#search input:focus {
-  outline: none;
 }
 
 .login-logout-button {
@@ -93,19 +44,4 @@
   font-weight: bold;
   text-align: center;
   position: absolute;
-}
-
-#cart-badge {
-  top: 5px;
-  left: 50px;
-}
-
-#notification-badge {
-  top: 5px;
-  left: 105px;
-}
-
-#cart-badge h4,
-#notification-badge h4 {
-  margin: 0;
 }

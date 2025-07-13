@@ -17,6 +17,6 @@
   border-radius: 10px;
   color: var(--theme-white);
   border: none;
-  padding: 0.5rem;
+  padding-inline: 1rem;
   font-size: large;
 }

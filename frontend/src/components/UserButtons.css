@@ -1,0 +1,34 @@
+#user-buttons {
+  position: absolute;
+  top: 20px;
+  right: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme-dark-green);
+  color: var(--theme-white);
+  border-radius: 10px;
+  gap: 15px;
+  width: 200px;
+}
+
+#user-buttons button {
+  padding: 0.5rem;
+  font-size: 30px;
+  color: var(--theme-white);
+}
+
+#cart-badge {
+  top: 5px;
+  left: 50px;
+}
+
+#notification-badge {
+  top: 5px;
+  left: 105px;
+}
+
+#cart-badge h4,
+#notification-badge h4 {
+  margin: 0;
+}

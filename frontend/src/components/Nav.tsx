@@ -5,7 +5,6 @@ import {
   BiCart,
   BiMessage,
   BiUser,
-  BiSearchAlt,
 } from "react-icons/bi";
 import "./Nav.css";
 import LoginSignup from "./LoginSignup";
@@ -14,7 +13,8 @@ import { initialStateUser } from "../contexts/AuthContext";
 import { logout } from "../services/user-service";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../contexts/CartContext";
-import { useNotificationContext } from "../contexts/NotificationContext";
+import Search from "./Search";
+import UserButtons from "./UserButtons";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
@@ -22,7 +22,6 @@ const Nav = () => {
 
   const { user, setUser } = useAuthContext();
   const { cart } = useCartContext();
-  const { notifications } = useNotificationContext();
 
   const navigate = useNavigate();
 
@@ -54,45 +53,7 @@ const Nav = () => {
             <h2>Skogsräven</h2>
           </div>
         </Link>
-        <form id="search">
-          <input placeholder="Search..."></input>
-          <button className="transparent-button">
-            <BiSearchAlt />
-          </button>
-        </form>
-        <div id="user-buttons">
-          <Link to={"/order"}>
-            <button className="transparent-button">
-              <BiCart />
-            </button>
-            {cart.length ? (
-              <div id="cart-badge" className="nav-badge">
-                <h4>{cartQuantity}</h4>
-              </div>
-            ) : (
-              <></>
-            )}
-          </Link>
-          <Link to={"/messages"}>
-            <button className="transparent-button">
-              <BiMessage />
-            </button>
-            {notifications.length ? (
-              <div id="notification-badge" className="nav-badge">
-                <h4>
-                  {notifications.filter((not) => not.status !== "read").length}
-                </h4>
-              </div>
-            ) : (
-              <></>
-            )}
-          </Link>
-          <Link to={"/profile"}>
-            <button className="transparent-button">
-              <BiUser />
-            </button>
-          </Link>
-        </div>
+        <Search></Search>
         <div id="login-logout">
           {user._id ? (
             <BiLogOutCircle
@@ -107,10 +68,9 @@ const Nav = () => {
           )}
         </div>
       </nav>
-      {showLoginForm ? (
+      <UserButtons cartQuantity={cartQuantity}></UserButtons>
+      {showLoginForm && (
         <LoginSignup setShowLoginForm={setShowLoginForm}></LoginSignup>
-      ) : (
-        <></>
       )}
     </div>
   );

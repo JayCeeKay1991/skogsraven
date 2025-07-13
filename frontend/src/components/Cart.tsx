@@ -70,7 +70,7 @@ const Cart = ({ setShowOrderConfirm }: props) => {
           </div>
         ))
       ) : (
-        <p>Ad something to the cart to see the details of your items.</p>
+        <p>Add something to the cart to see the details of your items.</p>
       )}
       {cart.length ? (
         <>

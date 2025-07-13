@@ -51,6 +51,9 @@
 .fourth-col {
   grid-column: 5;
 }
+#cart-action-buttons {
+  display: flex;
+}
 
 #cart-action-buttons button {
   height: 50px;

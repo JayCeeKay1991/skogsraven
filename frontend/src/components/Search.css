@@ -1,0 +1,32 @@
+#search input {
+  height: 40px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 250px;
+  border: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#search button {
+  background-color: var(--theme-lightgrey);
+  outline: none;
+  border: none;
+  height: 42px;
+  width: 45px;
+  font-size: 30px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: var(--theme-dark-green);
+}
+
+#search,
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search input:focus {
+  outline: none;
+}
