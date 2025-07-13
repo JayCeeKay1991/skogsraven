@@ -1,8 +1,8 @@
 import React from "react";
 import "./PastOrders.css";
 import { OrderType } from "../types/types";
-import moment from "moment";
 import { useAuthContext } from "../contexts/AuthContext";
+import PastOrdersItem from "./PastOrdersItem";
 
 type PastOrdersPropsType = {
   orderList: OrderType[];
@@ -21,16 +21,7 @@ const PastOrders = ({ orderList, error }: PastOrdersPropsType) => {
           <h3>Your past orders</h3>
           {orderList && orderList.length ? (
             orderList.map((order) => {
-              return (
-                <div id="past-order-item" key={order._id}>
-                  <p id="past-order-date">
-                    {moment(order.date).format("ddd, DD/MM/YYYY - HH:mm")}
-                  </p>
-                  <p>Order number: {order._id}</p>
-                  <p>Total: {order.sumTotal + order.deliveryFee} €</p>
-                  <h4>{order.status}</h4>
-                </div>
-              );
+              return <PastOrdersItem order={order}></PastOrdersItem>;
             })
           ) : (
             <p>No orders found.</p>
