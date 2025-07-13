@@ -1,7 +1,6 @@
 # Dependencies
 /node_modules
 prisma/*.db
-data
 # Production
 /build
 
