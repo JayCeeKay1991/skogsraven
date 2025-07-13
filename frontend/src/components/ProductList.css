@@ -1,4 +1,5 @@
 #product-list-wrap {
   display: flex;
   min-height: 400px;
+  flex-wrap: wrap;
 }

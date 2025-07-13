@@ -1,21 +1,22 @@
 #category-list-wrap {
   background-color: var(--theme-dark-green);
-  height: 60px;
-  padding: 10px;
+  height: fit-content;
+  padding: 1rem;
   display: flex;
-  gap: 10px;
+  gap: 0.8rem;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 #category-button {
   background-color: var(--theme-dark-brown);
   height: 38px;
+  min-width: fit-content;
   width: fit-content;
   border-radius: 10px;
   color: var(--theme-white);
   border: none;
-  padding: 10px;
-  font-weight: 600;
+  padding: 0.5rem;
   font-size: large;
 }

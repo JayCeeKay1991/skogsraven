@@ -10,6 +10,7 @@ type ProductItemProp = {
 
 const ProductItem = ({ product, categoryName }: ProductItemProp) => {
   const { cart, addItem } = useCartContext();
+  const soldOut = product.numAvailable === 0;
 
   let mockImage;
   switch (categoryName) {
@@ -48,22 +49,22 @@ const ProductItem = ({ product, categoryName }: ProductItemProp) => {
   return (
     <div id="product-item-wrap">
       <img
-        className={product.numAvailable ? "" : "sold-out"}
+        className={soldOut ? "sold-out" : ""}
         src={product.picture || mockImage}
         alt={product.name}
       ></img>
       <div id="product-item-text">
-        <h2>{product.name}</h2>
+        <h3>{product.name}</h3>
         <p>{product.shortDescription}</p>
         <h3>{product.price.toFixed(2)} €</h3>
-        {product.numAvailable > 0 ? (
-          <button id="cart-button" onClick={handleAddToCart}>
-            Add to cart
-          </button>
-        ) : (
-          <p>"Currently out of stock 💔"</p>
-        )}
       </div>
+      <button
+        className={`cart-button ${soldOut && "sold-out"}`}
+        onClick={handleAddToCart}
+        disabled={soldOut}
+      >
+        {soldOut ? "Sold out" : "Add to cart"}
+      </button>
     </div>
   );
 };
