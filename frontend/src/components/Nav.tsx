@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BiLogInCircle,
-  BiLogOutCircle,
-  BiCart,
-  BiMessage,
-  BiUser,
-} from "react-icons/bi";
+import { BiLogInCircle, BiLogOutCircle } from "react-icons/bi";
 import "./Nav.css";
 import LoginSignup from "./LoginSignup";
 import { useAuthContext } from "../contexts/AuthContext";
@@ -54,7 +48,8 @@ const Nav = () => {
           </div>
         </Link>
         <Search></Search>
-        <div id="login-logout">
+        <UserButtons cartQuantity={cartQuantity}></UserButtons>
+        <div id="login-logout-wrap">
           {user._id ? (
             <BiLogOutCircle
               className="login-logout-button"
@@ -68,7 +63,6 @@ const Nav = () => {
           )}
         </div>
       </nav>
-      <UserButtons cartQuantity={cartQuantity}></UserButtons>
       {showLoginForm && (
         <LoginSignup setShowLoginForm={setShowLoginForm}></LoginSignup>
       )}

@@ -1,10 +1,8 @@
 #user-buttons {
-  position: absolute;
-  top: 20px;
-  right: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-column: 11;
   background-color: var(--theme-light-brown-50);
   color: var(--theme-white);
   border-radius: 10px;

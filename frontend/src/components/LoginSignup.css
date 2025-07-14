@@ -1,7 +1,6 @@
 #login-signup-wrap {
   height: 60px;
   width: 420px;
-  /* background-color: var(--theme-light-brown); */
   background-color: var(--theme-white);
   border-radius: 10px;
   position: absolute;

@@ -2,9 +2,8 @@
   background-color: var(--theme-dark-green);
   max-width: 100%;
   height: 60px;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
   padding: 15px;
   align-items: center;
   justify-content: space-between;
@@ -18,6 +17,7 @@
   width: fit-content;
   display: flex;
   gap: 10px;
+  grid-column: 1 / 2;
   color: var(--theme-light-brown);
   align-items: center;
   font-family: "Permanent Marker";
@@ -27,11 +27,16 @@
   height: 50px;
 }
 
+#login-logout-wrap {
+  grid-column: 13;
+}
+
 .login-logout-button {
   size: 30px;
   font-size: 40px;
   color: var(--theme-white);
   cursor: pointer;
+  grid-column: 11 / 12;
 }
 
 .nav-badge {

@@ -1,0 +1,10 @@
+#feature-wrap {
+  display: grid;
+  grid-template-areas:
+    "a b b d"
+    "a b b d"
+    "a c e e";
+  margin: 1rem;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
