@@ -6,6 +6,8 @@ const config = {
   dbNameProd: process.env.DB_NAME || "products",
   port: process.env.PORT || 3002,
   rabbitMqUrl: process.env.RABBIT_MQ_URL || "amqp://rabbitmq:5672",
+  redisHost: process.env.REDIS_HOST || "redis",
+  redisPort: process.env.REDIS_PORT || 6379,
 };
 
 export default config;

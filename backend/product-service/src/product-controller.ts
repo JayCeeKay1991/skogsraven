@@ -1,30 +1,41 @@
 import { Request, Response } from "express";
 import ProductModel, { ProductType } from "./product-model";
+import redisClient from "./redis-client";
 
-export const createProduct = async (req: Request, res: Response) => {
+// storing in redis temporarily
+export const storeProducts = async (products: ProductType[]) => {
   try {
-    const productData = req.body as ProductType;
-
-    // Check if productData has the required fields
-    if (productData && productData.name) {
-      const newProduct = new ProductModel(productData);
-      const savedProduct = await newProduct.save();
-      res.status(201).json(savedProduct);
-    } else {
-      res.status(400).json({ error: "Missing required product fields" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Could not create product." });
+    const key = "products:all";
+    await redisClient.setEx(key, 86400, JSON.stringify(products)); // 24 hours
+  } catch (err) {
+    console.error("Error in caching products", err);
   }
 };
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
+    // try redis first
+    try {
+      const prodFromRedis = await redisClient.get("products:all");
+      if (prodFromRedis) {
+        res.status(200).json(JSON.parse(prodFromRedis));
+        return;
+      }
+    } catch (redisError) {
+      console.log("Redis error, falling back to MongoDB:", redisError);
+    }
+    // if nothing is cached in redis, get from mongodb
     const products = await ProductModel.find();
+
+    // and then cache in redis
+    await storeProducts(products);
+
     res.status(200).json(products);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500);
+    res.json({
+      error: "An unexpected error occurred while getting the products.",
+    });
   }
 };
 
@@ -38,21 +49,17 @@ export const updateStock = async (stockUpdate: {
       { $inc: { numAvailable: -stockUpdate.quantity } },
       { new: true }
     );
+
+    // invalidate redis cache
+    try {
+      await redisClient.del("products:all");
+    } catch (redisError) {
+      console.log("Redis error, falling back to MongoDB:", redisError);
+    }
+
     return updatedProduct;
   } catch (error) {
     console.error("Error updating product stock:", error);
     throw error;
-  }
-};
-
-export const deleteProduct = async (productId: string) => {
-  try {
-    const deletedProduct = await ProductModel.findOneAndDelete({
-      _id: productId,
-    });
-    return deletedProduct;
-  } catch (error) {
-    console.error(error);
-    return error;
   }
 };
