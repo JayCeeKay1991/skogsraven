@@ -43,7 +43,7 @@ h3 {
   border: none;
   border-radius: 50px;
   color: white;
-  background-color: var(--theme-dark-brown);
+  background-color: var(--theme-dark-green);
   align-self: center;
   cursor: pointer;
 }
