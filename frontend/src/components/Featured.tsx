@@ -1,23 +1,40 @@
-import React, { ReactChildren, ReactElement } from "react";
+import React from "react";
 import "./Featured.css";
+import { BiBorderRadius } from "react-icons/bi";
 
 const Featured = () => {
   return (
     <div id="feature-wrap">
-      <FeatureTile gridArea="a" height={600}>
-        <img src={"/mock-winter"}></img>
+      <FeatureTile gridArea="a">
+        <img className="image-cover" src={"/mock_winter.png"}></img>
+        <div className="overlay">
+          <h1>Winter is coming</h1>
+          <p>
+            Gear up in time with our season opening offers and book your skiing
+            vacation right here.
+          </p>
+        </div>
       </FeatureTile>
       <FeatureTile gridArea="b">
-        <img src={"/mock-tent"}></img>
+        <img className="image-cover" src={"/mock_tent.png"}></img>
+        <div className="ad-banner1">
+          <h1>Flash-Sale</h1>
+          <p>Camping season is over! Save up to 60% on tents this fall.</p>
+          <small>Offers valid until 31st of october.</small>
+        </div>
       </FeatureTile>
       <FeatureTile gridArea="c">
-        <img src={"/mock-sleepingbag"}></img>
+        <img className="image-cover" src={"/mock_vanlife.png"}></img>
       </FeatureTile>
       <FeatureTile gridArea="d">
-        <img src={"/mock-vanlife"}></img>
+        <img className="image-cover" src={"/mock_cooking.png"} />
       </FeatureTile>
       <FeatureTile gridArea="e">
-        <img src={"/mock-cooking"}></img>
+        <img src={"/logo-brown.png"}></img>
+        <div className="ad-banner2">
+          <h1>SKOGSRÄVEN SALE</h1>
+          <small>Look out for special offers on our house brands.</small>
+        </div>
       </FeatureTile>
     </div>
   );
@@ -29,19 +46,23 @@ type FeatureTileProps = {
   height?: number;
   width?: number;
   gridArea: string;
-  children: ReactElement;
+  children: any;
 };
 
-const FeatureTile = ({ height, gridArea }: FeatureTileProps) => {
+const FeatureTile = ({
+  height,
+  width,
+  gridArea,
+  children,
+}: FeatureTileProps) => {
   const tileStyle = {
     gridArea,
-    height,
-    border: "black solid 1px",
+    border: "lightgrey solid 1px",
+    borderRadius: "8px",
+    display: "flex",
+    overflow: "hidden",
+    position: "relative",
   };
 
-  return (
-    <div style={tileStyle}>
-      <p>Feature</p>
-    </div>
-  );
+  return <div style={tileStyle}>{children}</div>;
 };
