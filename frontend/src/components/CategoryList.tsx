@@ -1,39 +1,31 @@
-import { CategoryType, ProductType } from "@/types/types";
-import React, { useEffect, useState } from "react";
+import { CategoryType, ProductType } from "../types/types";
+import React, { useState } from "react";
 import "./CategoryList.css";
 import ProductList from "./ProductList";
-import { getProducts } from "../services/product-service";
 import Featured from "./Featured";
+import useFetchProducts from "../contexts/useFetchProducts";
 
 type CategoryListProps = {
   categoryList: CategoryType[];
 };
 
 const CategoryList = ({ categoryList }: CategoryListProps) => {
-  const [productList, setProductList] = useState<ProductType[]>([]);
+  const [productsByCategory, setProductsByCategory] = useState<ProductType[]>(
+    []
+  );
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
     null
   );
+
+  const { productList } = useFetchProducts();
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    const fetchProductsByCategory = async (selectedCategory: CategoryType) => {
-      try {
-        const allProducts = await getProducts();
-
-        setProductList(
-          allProducts.filter((prod) => prod.category === selectedCategory._id)
-        );
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error
-            ? err.message
-            : "An unknown error occurred. Sorry!";
-        setError(errorMessage);
-      }
-    };
-    if (selectedCategory) fetchProductsByCategory(selectedCategory);
-  }, [selectedCategory]);
+  const handleSelectCategory = (category: CategoryType) => {
+    setSelectedCategory(category);
+    setProductsByCategory(
+      productList.filter((prod) => prod.category === category._id)
+    );
+  };
 
   return (
     <>
@@ -43,9 +35,7 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
             <button
               id="category-button"
               key={category._id}
-              onClick={() => {
-                setSelectedCategory(category);
-              }}
+              onClick={() => handleSelectCategory(category)}
             >
               {category.name.toUpperCase()}
             </button>
@@ -56,12 +46,12 @@ const CategoryList = ({ categoryList }: CategoryListProps) => {
       </div>
       {error ? (
         <p>{error}</p>
-      ) : selectedCategory && productList.length ? (
+      ) : selectedCategory && productsByCategory.length ? (
         <ProductList
-          productList={productList}
+          productList={productsByCategory}
           categoryName={selectedCategory.name}
         ></ProductList>
-      ) : selectedCategory && !productList.length ? (
+      ) : selectedCategory && !productsByCategory.length ? (
         <p>No products for this category.</p>
       ) : (
         <Featured></Featured>

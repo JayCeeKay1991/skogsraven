@@ -3,7 +3,6 @@ import cors from "cors";
 import router from "./category-router";
 import mongoose from "mongoose";
 import config from "./config/config";
-import redisClient from "./redis-client";
 
 const port = config.port;
 const dbUrl = `${config.dbUrl}${config.dbNameCat}`;

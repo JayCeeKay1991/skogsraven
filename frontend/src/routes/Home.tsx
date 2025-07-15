@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css";
 import { CategoryType } from "../types/types";
 import { getCategories } from "../services/category-service";
 import CategoryList from "../components/CategoryList";
@@ -16,9 +15,9 @@ const Home = () => {
         setCategoryList(allCategories);
       } catch (err) {
         const errorMessage =
-        err instanceof Error
-        ? err.message
-        : "An unknown error occurred. Sorry!";
+          err instanceof Error
+            ? err.message
+            : "An unknown error occurred. Sorry!";
         setError(errorMessage);
       }
     };

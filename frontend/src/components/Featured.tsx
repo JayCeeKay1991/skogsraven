@@ -4,6 +4,7 @@ import { BiBorderRadius } from "react-icons/bi";
 
 const Featured = () => {
   return (
+    // <section id="feature-section">
     <div id="feature-wrap">
       <FeatureTile gridArea="a">
         <img className="image-cover" src={"/mock_winter.png"}></img>
@@ -29,7 +30,7 @@ const Featured = () => {
       <FeatureTile gridArea="d">
         <img className="image-cover" src={"/mock_cooking.png"} />
       </FeatureTile>
-      <FeatureTile gridArea="e">
+      <FeatureTile gridArea="e" backgroundColor={"var(--theme-light-green)"}>
         <img src={"/logo-brown.png"}></img>
         <div className="ad-banner2">
           <h1>SKOGSRÄVEN SALE</h1>
@@ -37,31 +38,31 @@ const Featured = () => {
         </div>
       </FeatureTile>
     </div>
+    // </section>
   );
 };
 
 export default Featured;
 
 type FeatureTileProps = {
-  height?: number;
-  width?: number;
   gridArea: string;
   children: any;
+  backgroundColor?: string;
 };
 
 const FeatureTile = ({
-  height,
-  width,
+  backgroundColor,
   gridArea,
   children,
 }: FeatureTileProps) => {
   const tileStyle = {
     gridArea,
     border: "lightgrey solid 1px",
+    backgroundColor,
     borderRadius: "8px",
     display: "flex",
     overflow: "hidden",
-    position: "relative",
+    position: "relative" as const,
   };
 
   return <div style={tileStyle}>{children}</div>;

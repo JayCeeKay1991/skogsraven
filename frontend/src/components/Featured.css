@@ -1,5 +1,6 @@
 #feature-wrap {
   display: grid;
+  background-color: var(--theme-white);
   width: 95%;
   height: 600px;
   grid-template-areas:
@@ -9,7 +10,7 @@
     "a c e e"
     "a c e e";
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 15% 15% 15% 15% 15%;
+  grid-template-rows: 18% 18% 18% 18% 18%;
   margin: 1rem;
   column-gap: 1rem;
   row-gap: 1rem;
@@ -38,7 +39,7 @@
   margin: auto 0;
   width: 85%;
   color: var(--theme-dark-brown);
-  font-size: xx-large;
+  font-size: 1.6vmax;
 }
 .ad-banner2 h1 {
   margin-bottom: 0;
