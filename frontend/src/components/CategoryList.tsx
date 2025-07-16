@@ -24,7 +24,7 @@ const CategoryList = ({
           </button>
         ))
       ) : (
-        <h2>An error occured when loading the categories.</h2>
+        <p>No categories found.</p>
       )}
     </div>
   );

@@ -6,16 +6,20 @@ import Hero from "../components/Hero";
 import { getProducts } from "../services/product-service";
 import ProductList from "../components/ProductList";
 import Featured from "../components/Featured";
+import useStore from "../utils/store";
 
 const Home = () => {
   const [categoryList, setCategoryList] = useState<CategoryType[]>([]);
-  const [productList, setProductList] = useState<ProductType[]>([]);
+  const [fullProductList, setFullProductList] = useState<ProductType[]>([]);
+  const [filteredProductList, setFilteredProductList] = useState<ProductType[]>(
+    []
+  );
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
     null
   );
   const [categoryError, setCategoryError] = useState("");
   const [productError, setProductError] = useState("");
-  const [query, setQuery] = useState("");
+  const query = useStore((state) => state.query);
 
   useEffect(() => {
     const fetchAndSetCategories = async () => {
@@ -31,15 +35,16 @@ const Home = () => {
       }
     };
     fetchAndSetCategories();
-  }, []);
+  }, [selectedCategory]);
 
   useEffect(() => {
     const fetchAndSetProducts = async () => {
       try {
         const allProducts = await getProducts();
-        setProductList(allProducts);
+        setFullProductList(allProducts);
+        setFilteredProductList(allProducts);
         if (selectedCategory)
-          setProductList((prev) =>
+          setFilteredProductList((prev) =>
             prev.filter((prod) => prod.category === selectedCategory._id)
           );
       } catch (err) {
@@ -51,7 +56,17 @@ const Home = () => {
       }
     };
     fetchAndSetProducts();
-  }, [selectedCategory, query]);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    if (query) {
+      const filtered = fullProductList.filter((prod) =>
+        prod.name.toLowerCase().includes(query.toLowerCase())
+      );
+
+      setFilteredProductList(filtered);
+    }
+  }, [query]);
 
   const showProducts = selectedCategory;
   return (
@@ -69,12 +84,12 @@ const Home = () => {
         <p>{productError}</p>
       ) : (
         <>
-          {showProducts && productList.length !== 0 ? (
+          {showProducts && filteredProductList.length ? (
             <ProductList
-              productList={productList}
+              productList={filteredProductList}
               categoryName={selectedCategory.name}
             ></ProductList>
-          ) : !productList.length ? (
+          ) : showProducts && !filteredProductList.length ? (
             <p>No products for this category.</p>
           ) : (
             <Featured></Featured>
