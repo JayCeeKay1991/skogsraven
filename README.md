@@ -1,6 +1,6 @@
 # Skogsräven
 
-![Skogsräven Logo](public/logo.png)
+<img src='public/readme_hero.png' height='350px'></img>
 
 Skogsräven is an e-commerce web application with a containerized backend consisting of microservices. Front and backend can be run separately, while the backend is further divided into individual services for products, categories, orders, users and notifications.
 
@@ -8,9 +8,10 @@ Skogsräven is an e-commerce web application with a containerized backend consis
 
 ### Frontend
 
-- React
 - Typescript
+- React
 - CSS
+- Zustand
 
 ### Backend / Data
 
@@ -33,7 +34,7 @@ The application will be available at:
 - RabbitMQ Management: http://localhost:15673
 - MongoDB: http://localhost:27018
 
-Seed initial data for categories, products and a user with `cd backend/common && npm run seed`. You can then log in using the credentials: username `jay@skogsraven.com`, password: `pw`.
+Seed initial data for categories, products and a user with `cd backend/common && npm run seed`. You can then log in using the credentials: username `hi@skogsraven.com`, password: `pw`.
 
 To stop all services, run `docker-compose down`.
 
@@ -61,3 +62,8 @@ To stop all services, run `docker-compose down`.
 - RabbitMQ: 5673 (AMQP), 15673 (Management UI)
 - Redis: 6380
 - MongoDB: 27018
+
+##### ⚠️ Demo Project
+
+This is a learning/demo project. Do not use in production.
+All credentials and secrets are for demonstration purposes only.

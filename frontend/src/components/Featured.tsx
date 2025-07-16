@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "./Featured.css";
 import { BiBorderRadius } from "react-icons/bi";
 
@@ -46,7 +46,7 @@ export default Featured;
 
 type FeatureTileProps = {
   gridArea: string;
-  children: any;
+  children: ReactNode;
   backgroundColor?: string;
 };
 

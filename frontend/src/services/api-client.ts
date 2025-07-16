@@ -23,5 +23,4 @@ export async function apiClient<T>(
   throw new Error(
     `We're having trouble connecting to the ${endpoint} endpoint. Sorry!`
   );
-  console.log(response);
 }

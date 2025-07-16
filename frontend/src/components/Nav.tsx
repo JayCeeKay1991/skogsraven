@@ -13,6 +13,7 @@ import UserButtons from "./UserButtons";
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(0);
+  const [error, setError] = useState("");
 
   const { user, setUser } = useAuthContext();
   const { cart } = useCartContext();
@@ -24,8 +25,12 @@ const Nav = () => {
       await logout();
       setUser(initialStateUser);
       navigate("/home");
-    } catch (error) {
-      console.log(error);
+    } catch (logoutError) {
+      const errorMessage =
+        logoutError instanceof Error
+          ? logoutError.message
+          : "An unknown error occurred. Sorry!";
+      setError(errorMessage);
     }
   };
 
