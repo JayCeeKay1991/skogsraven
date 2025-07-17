@@ -1,15 +1,18 @@
 import { create } from "zustand";
 
-type QueryState = {
+type StoreState = {
   query: string;
+  showProducts: boolean;
   updateQuery: (newQuery: string) => void;
-  clearQuery: () => void;
+  updateShowProducts: (updatedShowProducts: boolean) => void;
 };
 
-const useStore = create<QueryState>((set) => ({
+const useStore = create<StoreState>((set) => ({
   query: "",
+  showProducts: false,
   updateQuery: (newQuery: string) => set({ query: newQuery }),
-  clearQuery: () => set({ query: "" }),
+  updateShowProducts: (updatedShowProducts) =>
+    set({ showProducts: updatedShowProducts }),
 }));
 
 export default useStore;

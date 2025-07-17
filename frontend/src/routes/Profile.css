@@ -30,4 +30,9 @@
   cursor: pointer;
   align-self: center;
   margin-top: 30px;
+  transition: scale 0.2s;
+}
+
+#save-profile-changes-button:hover {
+  scale: 103%;
 }

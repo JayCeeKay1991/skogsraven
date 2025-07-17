@@ -59,7 +59,9 @@ const Cart = ({ setShowOrderConfirm }: props) => {
               </div>
             </div>
             <p className="second-col">{item.product}</p>
-            <p className="third-col">{`${item.price},00 €`}</p>
+            <p className="third-col">{`${(item.price * item.quantity).toFixed(
+              2
+            )} €`}</p>
             <button
               id="delete-button"
               className="fourth-col, transparent-button"
@@ -76,9 +78,11 @@ const Cart = ({ setShowOrderConfirm }: props) => {
         <>
           <div id="sum-total">
             <p className="third-col">
-              {`${cart.reduce((acc, item) => {
-                return (acc += item.price * item.quantity);
-              }, 0)},00 €`}
+              {`${cart
+                .reduce((acc, item) => {
+                  return (acc += item.price * item.quantity);
+                }, 0)
+                .toFixed(2)} €`}
             </p>
           </div>
           <div id="cart-action-buttons">

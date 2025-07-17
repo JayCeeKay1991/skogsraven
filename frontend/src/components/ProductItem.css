@@ -8,6 +8,11 @@
   color: black;
   display: flex;
   flex-direction: column;
+  transition: scale 0.3s;
+}
+
+#product-item-wrap:hover {
+  scale: 105%;
 }
 
 #product-item-wrap img {
@@ -33,10 +38,16 @@ h3 {
   filter: grayscale(100%);
 }
 
+.cart-button:disabled {
+  cursor: not-allowed;
+  color: lightgrey;
+}
+
 .cart-button {
   position: absolute;
-  bottom: 32px;
+  bottom: 26px;
   padding: 10px;
+  height: 42px;
   width: 110px;
   font-size: 15px;
   outline: none;
@@ -44,6 +55,12 @@ h3 {
   border-radius: 50px;
   color: white;
   background-color: var(--theme-dark-green);
+  transition: background-color scale 0.5s;
   align-self: center;
   cursor: pointer;
+}
+
+.cart-button:hover {
+  background-color: var(--theme-dark-brown);
+  scale: 102%;
 }

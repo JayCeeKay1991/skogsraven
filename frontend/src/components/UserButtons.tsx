@@ -4,6 +4,7 @@ import React from "react";
 import { BiMessage, BiUser, BiCart } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import "./UserButtons.css";
+import { relative } from "path";
 
 const UserButtons = ({ cartQuantity }: { cartQuantity: number }) => {
   const { cart } = useCartContext();
@@ -11,7 +12,7 @@ const UserButtons = ({ cartQuantity }: { cartQuantity: number }) => {
 
   return (
     <div id="user-buttons">
-      <Link to={"/order"}>
+      <Link className="link" to={"/order"}>
         <button className="transparent-button">
           <BiCart />
         </button>
@@ -23,7 +24,7 @@ const UserButtons = ({ cartQuantity }: { cartQuantity: number }) => {
           <></>
         )}
       </Link>
-      <Link to={"/messages"}>
+      <Link className="link" to={"/messages"}>
         <button className="transparent-button">
           <BiMessage />
         </button>

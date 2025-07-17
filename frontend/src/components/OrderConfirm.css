@@ -30,4 +30,9 @@
   border: none;
   background-color: var(--theme-dark-green);
   color: var(--theme-white);
+  transition: scale 0.2s;
+}
+
+#order-conf-form button:hover {
+  scale: 103%;
 }

@@ -19,4 +19,9 @@
   border: none;
   padding-inline: 1rem;
   font-size: large;
+  transition: scale 0.2s;
+}
+
+#category-button:hover {
+  scale: 105%;
 }

@@ -16,14 +16,15 @@
   color: var(--theme-white);
 }
 
-#cart-badge {
-  top: 5px;
-  left: 50px;
+.link {
+  position: relative;
 }
 
+#cart-badge,
 #notification-badge {
+  position: absolute;
   top: 5px;
-  left: 105px;
+  left: 30px;
 }
 
 #cart-badge h4,

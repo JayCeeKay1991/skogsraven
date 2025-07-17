@@ -1,6 +1,7 @@
 import { CategoryType } from "../types/types";
 import React, { Dispatch, SetStateAction } from "react";
 import "./CategoryList.css";
+import useStore from "../utils/store";
 
 type CategoryListProps = {
   categoryList: CategoryType[];
@@ -11,6 +12,8 @@ const CategoryList = ({
   categoryList,
   setSelectedCategory,
 }: CategoryListProps) => {
+  const updateShowProducts = useStore((state) => state.updateShowProducts);
+
   return (
     <div id="category-list-wrap">
       {categoryList.length ? (
@@ -18,7 +21,10 @@ const CategoryList = ({
           <button
             id="category-button"
             key={category._id}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => {
+              updateShowProducts(true);
+              return setSelectedCategory(category);
+            }}
           >
             {category.name.toUpperCase()}
           </button>

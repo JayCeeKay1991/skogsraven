@@ -9,11 +9,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../contexts/CartContext";
 import Search from "./Search";
 import UserButtons from "./UserButtons";
+import useStore from "../utils/store";
 
 const Nav = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(0);
   const [error, setError] = useState("");
+  const updateShowProducts = useStore((state) => state.updateShowProducts);
 
   const { user, setUser } = useAuthContext();
   const { cart } = useCartContext();
@@ -43,11 +45,12 @@ const Nav = () => {
     }
   }, [cart]);
 
+
   return (
     <div id="nav-with-login">
       <nav id="nav-wrap">
         <Link to={"/home"} style={{ textDecorationLine: "none" }}>
-          <div id="logo-wrap">
+          <div onClick={() => updateShowProducts(false)} id="logo-wrap">
             <img id="nav-logo" src="logo-brown.png"></img>
             <h2>Skogsräven</h2>
           </div>

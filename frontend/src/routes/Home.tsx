@@ -20,6 +20,7 @@ const Home = () => {
   const [categoryError, setCategoryError] = useState("");
   const [productError, setProductError] = useState("");
   const query = useStore((state) => state.query);
+  const showProducts = useStore((state) => state.showProducts);
 
   useEffect(() => {
     const fetchAndSetCategories = async () => {
@@ -60,15 +61,16 @@ const Home = () => {
 
   useEffect(() => {
     if (query) {
-      const filtered = fullProductList.filter((prod) =>
-        prod.name.toLowerCase().includes(query.toLowerCase())
+      const filtered = fullProductList.filter(
+        (prod) =>
+          prod.name.toLowerCase().includes(query.toLowerCase()) &&
+          prod.category === selectedCategory?._id
       );
 
       setFilteredProductList(filtered);
     }
   }, [query]);
 
-  const showProducts = selectedCategory;
   return (
     <>
       <Hero />
@@ -82,19 +84,15 @@ const Home = () => {
       )}
       {productError ? (
         <p>{productError}</p>
+      ) : !showProducts ? (
+        <Featured></Featured>
+      ) : filteredProductList.length && selectedCategory ? (
+        <ProductList
+          productList={filteredProductList}
+          categoryName={selectedCategory.name}
+        ></ProductList>
       ) : (
-        <>
-          {showProducts && filteredProductList.length ? (
-            <ProductList
-              productList={filteredProductList}
-              categoryName={selectedCategory.name}
-            ></ProductList>
-          ) : showProducts && !filteredProductList.length ? (
-            <p>No products for this category.</p>
-          ) : (
-            <Featured></Featured>
-          )}
-        </>
+        <p>No products for this category.</p>
       )}
     </>
   );
